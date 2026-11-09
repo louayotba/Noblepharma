@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Noblepharma – Smart Healthcare Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #102B46;
+      --navy-2: #173B5D;
+      --green: #23A879;
+      --green-light: #E9F7F1;
+      --bg: #F3F6F8;
+      --white: #FFFFFF;
+      --text: #1A2B3C;
+      --text-muted: #6B7C8F;
+      --danger: #E74C3C;
+      --orange: #F39C12;
+      --card-shadow: 0 4px 20px rgba(16, 43, 70, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      touch-action: manipulation;
+    }
+
+    button, .btn, .role-card, .portal-card, .dash-card, .nav-item, .list-card, .menu-btn, .icon-btn, .user-chip, .card-action {
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* ========== SCREENS ========== */
+    .screen {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+      animation: fadeIn 0.35s ease;
+    }
+    .screen.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== AUTH SCREEN ========== */
+    #auth-screen {
+      background: linear-gradient(160deg, #0F2A44 0%, #1A4A6E 50%, #23A879 160%);
+      color: white;
+      justify-content: center;
+      align-items: center;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .auth-logo {
+      margin-bottom: 28px;
+    }
+
+    .auth-logo svg {
+      width: 72px;
+      height: 72px;
+    }
+
+    .auth-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .auth-tagline {
+      font-size: 15px;
+      opacity: 0.85;
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+
+    .auth-buttons {
+      width: 100%;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 54px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--navy);
+    }
+    .btn-primary:active {
+      transform: scale(0.97);
+      background: #f0f4f8;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:active {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .auth-footer {
+      margin-top: 36px;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    /* ========== SIGN UP MODAL ========== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 43, 70, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-sheet {
+      background: white;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px 24px 0 0;
+      padding: 28px 24px 40px;
+      animation: slideUp 0.35s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .modal-handle {
+      width: 40px;
+      height: 4px;
+      background: #D0D7DE;
+      border-radius: 2px;
+      margin: 0 auto 20px;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .modal-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .role-grid .role-card {
+      padding: 14px 10px;
+    }
+
+    .role-grid .role-icon {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .role-grid .role-name {
+      font-size: 13px;
+    }
+
+    .role-card {
+      background: var(--bg);
+      border: 2px solid transparent;
+      border-radius: 16px;
+      padding: 18px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .role-card:active, .role-card.selected {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+
+    .role-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .role-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-group input {
+      width: 100%;
+      height: 48px;
+      border: 1.5px solid #D0D7DE;
+      border-radius: 12px;
+      padding: 0 14px;
+      font-size: 15px;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .form-group input:focus {
+      border-color: var(--green);
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: white;
+      width: 100%;
+      height: 52px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-green:active {
+      transform: scale(0.98);
+      background: #1e966b;
+    }
+
+    /* ========== PORTAL SELECTION ========== */
+    #portal-screen {
+      background: var(--bg);
+    }
+
+    .top-bar {
+      background: white;
+      padding: 16px 20px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-area svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+    }
+
+    .user-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      padding: 6px 12px 6px 6px;
+      border-radius: 40px;
+      cursor: pointer;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .portal-content {
+      padding: 20px 16px 40px;
+      flex: 1;
+    }
+
+    .welcome {
+      margin-bottom: 20px;
+    }
+
+    .welcome h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .welcome p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .portal-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      box-shadow: var(--card-shadow);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 140px;
+    }
+    .portal-card:active {
+      transform: scale(0.97);
+    }
+
+    .portal-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .portal-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .portal-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* Colors for portal cards */
+    .p-patient .portal-icon { background: #E8F4FD; }
+    .p-physician .portal-icon { background: #E9F7F1; }
+    .p-liora .portal-icon { background: #F0EAF8; }
+    .p-caregiver .portal-icon { background: #FFF4E6; }
+    .p-network .portal-icon { background: #E8F8F5; }
+    .p-authority .portal-icon { background: #FDECEC; }
+
+    .alerts-section {
+      background: white;
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--card-shadow);
+      border-left: 4px solid var(--orange);
+    }
+
+    .alerts-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .alerts-header h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .alert-item {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #F0F2F5;
+      font-size: 13px;
+    }
+    .alert-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .alert-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    /* ========== PATIENT PORTAL ========== */
+    #patient-screen {
+      background: var(--bg);
+    }
+
+    .patient-header {
+      background: white;
+      padding: 12px 16px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    }
+
+    .ph-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .ph-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-btn, .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--navy);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .brand span {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .ph-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .notif-btn {
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: var(--danger);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: #F0F4F8;
+      border-radius: 14px;
+      padding: 0 14px;
+      height: 46px;
+      gap: 10px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      outline: none;
+      color: var(--text);
+    }
+
+    .search-bar input::placeholder {
+      color: #8A9BB0;
+    }
+
+    .patient-body {
+      padding: 16px 16px 90px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .dash-card {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--card-shadow);
+      cursor: pointer;
+      transition: transform 0.15s;
+      position: relative;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+    }
+    .dash-card:active {
+      transform: scale(0.97);
+    }
+
+    .dash-card .arrow {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      color: #A0AEC0;
+      font-size: 14px;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .card-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .card-action {
+      margin-top: 10px;
+      background: var(--navy-2);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      height: 34px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* Card colors matching the mock */
+    .c-dose { background: #EEF5FF; }
+    .c-dose .card-icon { background: #D6E8FF; }
+    .c-appt { background: #E9F7F1; }
+    .c-appt .card-icon { background: #C8EEDD; }
+    .c-remind { background: #FFF6E9; }
+    .c-remind .card-icon { background: #FFE8C4; }
+    .c-device { background: #F0EBFF; }
+    .c-device .card-icon { background: #DDD4FF; }
+    .c-team { background: #E8F8F5; }
+    .c-team .card-icon { background: #C5EDE5; }
+    .c-health { background: #FDECEC; }
+    .c-health .card-icon { background: #FBCBCB; }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 4px 12px;
+      box-shadow: 0 -2px 16px rgba(0,0,0,0.06);
+      z-index: 60;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 4px;
+      min-width: 62px;
+      color: #8A9BB0;
+      transition: color 0.2s;
+    }
+
+    .nav-item.active {
+      color: var(--green);
+    }
+
+    .nav-item .nav-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .nav-item .nav-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    /* Sub pages inside patient */
+    .sub-page {
+      display: none;
+      padding: 16px;
+      padding-bottom: 90px;
+    }
+    .sub-page.active {
+      display: block;
+    }
+
+    .page-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .list-card {
+      background: white;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .list-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .list-info h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+
+    .list-info p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ========== OTHER PORTALS (simplified but nice) ========== */
+    .portal-header {
+      background: white;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .back-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--navy);
+    }
+
+    .portal-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .portal-body {
+      padding: 20px 16px 40px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      margin-top: 8px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--navy);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 2000;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Desktop centering */
+    @media (min-width: 480px) {
+      body {
+        display: flex;
+        justify-content: center;
+        background: #E5EAF0;
+      }
+      .screen {
+        max-width: 420px;
+        width: 100%;
+        box-shadow: 0 0 40px rgba(0,0,0,0.08);
+      }
+      .bottom-nav {
+        max-width: 420px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== AUTH SCREEN ==================== -->
+  <div id="auth-screen" class="screen active">
+    <div class="auth-logo" style="margin-bottom:18px;">
+      <img src="data:image/png;base64,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" alt="Noble Pharma" style="width:260px; max-width:85%; height:auto; display:block; margin:0 auto;" />
+    </div>
+    <div class="auth-tagline" style="font-size:20px; font-style:italic; font-weight:500; opacity:0.95; margin-top:8px; letter-spacing:0.4px; color:white;">
+      Solidarity For Life
+    </div>
+
+    <div class="auth-buttons" style="margin-top:36px;">
+      <button class="btn btn-primary" onclick="doSignIn()">
+        Sign In
+      </button>
+      <button class="btn btn-outline" onclick="openSignup()">
+        Sign Up
+      </button>
+    </div>
+
+    <div class="auth-footer">
+      Demo Prototype • No real data stored
+    </div>
+  </div>
+
+  <!-- ==================== SIGN UP MODAL ==================== -->
+  <div id="signup-modal" class="modal-overlay" onclick="closeSignup(event)">
+    <div class="modal-sheet" onclick="event.stopPropagation()">
+      <div class="modal-handle"></div>
+      <div class="modal-title">Create Account</div>
+      <div class="modal-sub">Choose your role to continue</div>
+
+      <div class="role-grid">
+        <div class="role-card selected" data-role="patient" onclick="selectRole(this)">
+          <div class="role-icon">🧑‍⚕️</div>
+          <div class="role-name">Patient</div>
+        </div>
+        <div class="role-card" data-role="physician" onclick="selectRole(this)">
+          <div class="role-icon">👨‍⚕️</div>
+          <div class="role-name">Physician</div>
+        </div>
+        <div class="role-card" data-role="liora" onclick="selectRole(this)">
+          <div class="role-icon">💊</div>
+          <div class="role-name">Pharmacist</div>
+        </div>
+        <div class="role-card" data-role="caregiver" onclick="selectRole(this)">
+          <div class="role-icon">❤️</div>
+          <div class="role-name">Caregiver</div>
+        </div>
+        <div class="role-card" data-role="network" onclick="selectRole(this)">
+          <div class="role-icon">🏥</div>
+          <div class="role-name">Medical Network</div>
+        </div>
+        <div class="role-card" data-role="authority" onclick="selectRole(this)">
+          <div class="role-icon">🏛️</div>
+          <div class="role-name">Authorities</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="signup-name" placeholder="Enter your full name" value="Lina Al-Rashid">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="signup-email" placeholder="you@example.com" value="lina@email.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="signup-pass" placeholder="••••••••" value="demo1234">
+      </div>
+
+      <button class="btn-green" onclick="completeSignup()">Create Account</button>
+    </div>
+  </div>
+
+  <!-- ==================== PORTAL SELECTION ==================== -->
+  <div id="portal-screen" class="screen">
+    <div class="top-bar">
+      <div class="logo-area">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
+          <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
+          <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
+        </svg>
+        <span class="logo-text">Noblepharma</span>
+      </div>
+      <div class="user-chip" onclick="showToast('Profile menu (demo)')">
+        <div class="avatar" id="user-avatar">LA</div>
+        <span style="font-size:13px;font-weight:600;color:var(--navy)" id="user-name">Lina</span>
+      </div>
+    </div>
+
+    <div class="portal-content">
+      <div class="welcome">
+        <h1>Welcome back</h1>
+        <p>Select a portal to continue</p>
+      </div>
+
+      <div class="portal-grid">
+        <div class="portal-card p-patient" onclick="enterPortal('patient')">
+          <div class="portal-icon">🧑‍⚕️</div>
+          <div class="portal-name">Patient</div>
+          <div class="portal-desc">Medications, appointments & health records</div>
+        </div>
+
+        <div class="portal-card p-physician" onclick="enterPortal('physician')">
+          <div class="portal-icon">👨‍⚕️</div>
+          <div class="portal-name">Physician</div>
+          <div class="portal-desc">Patients, requests & consultations</div>
+        </div>
+
+        <div class="portal-card p-liora" onclick="enterPortal('liora')">
+          <div class="portal-icon">💊</div>
+          <div class="portal-name">LIORA System</div>
+          <div class="portal-desc">Pharmacists & smart dispensing</div>
+        </div>
+
+        <div class="portal-card p-caregiver" onclick="enterPortal('caregiver')">
+          <div class="portal-icon">❤️</div>
+          <div class="portal-name">Caregivers</div>
+          <div class="portal-desc">Family & care support tools</div>
+        </div>
+
+        <div class="portal-card p-network" onclick="enterPortal('network')">
+          <div class="portal-icon">🏥</div>
+          <div class="portal-name">Medical Network</div>
+          <div class="portal-desc">Hospitals, labs & providers</div>
+        </div>
+
+        <div class="portal-card p-authority" onclick="enterPortal('authority')">
+          <div class="portal-icon">🏛️</div>
+          <div class="portal-name">Authorities</div>
+          <div class="portal-desc">Public health & population data</div>
+        </div>
+      </div>
+
+      <div class="alerts-section">
+        <div class="alerts-header">
+          <span style="font-size:18px">🔔</span>
+          <h3>System Alerts</h3>
+        </div>
+        <div class="alert-item">
+          <div class="alert-dot"></div>
+          <div>Medication supply running low for 12 patients in Riyadh region</div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-dot" style="background:#23A879"></div>
+          <div>New LIORA cartridge batch approved – Quality verified</div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-dot" style="background:#E74C3C"></div>
+          <div>3 pending consultation requests require physician response</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PATIENT PORTAL ==================== -->
+  <div id="patient-screen" class="screen">
+    <div class="patient-header">
+      <div class="ph-top">
+        <div class="ph-left">
+          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <div class="brand">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
+              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
+              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
+            </svg>
+            <span>Noblepharma</span>
+          </div>
+        </div>
+        <div class="ph-right">
+          <button class="icon-btn notif-btn" onclick="showToast('3 new messages')">
+            💬
+            <span class="badge">3</span>
+          </button>
+          <button class="icon-btn" style="background:var(--green);color:white;font-weight:700;font-size:13px" onclick="showToast('Profile')">
+            LA
+          </button>
+        </div>
+      </div>
+      <div class="search-bar">
+        <span style="color:#23A879;font-size:18px">✦</span>
+        <input type="text" placeholder="Ask Noblepharma..." />
+        <span style="color:#8A9BB0;font-size:18px">🎤</span>
+      </div>
+    </div>
+
+    <!-- Overview Tab -->
+    <div id="tab-overview" class="patient-body sub-page active">
+      <div class="cards-grid">
+        <!-- Next Dose -->
+        <div class="dash-card c-dose" onclick="showToast('Opening medication details')">
+          <span class="arrow">›</span>
+          <div class="card-icon">💊</div>
+          <div class="card-title">My Next Dose</div>
+          <div class="card-sub">Furosemide 50 mg<br>⏰ 8:00 AM</div>
+          <button class="card-action" onclick="event.stopPropagation(); markTaken()">Mark as Taken</button>
+        </div>
+
+        <!-- Next Appointment -->
+        <div class="dash-card c-appt" onclick="showToast('Opening appointment')">
+          <span class="arrow">›</span>
+          <div class="card-icon">📅</div>
+          <div class="card-title">My Next Appointment</div>
+          <div class="card-sub">Dr. Ahmad<br>Sat, Apr 26 • 5:30 PM</div>
+        </div>
+
+        <!-- Reminders -->
+        <div class="dash-card c-remind" onclick="showToast('Opening reminders')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🔔</div>
+          <div class="card-title">My Reminders</div>
+          <div class="card-sub">Your medication supply is running low.</div>
+        </div>
+
+        <!-- Devices -->
+        <div class="dash-card c-device" onclick="showToast('Opening devices')">
+          <span class="arrow">›</span>
+          <div class="card-icon">⌚</div>
+          <div class="card-title">My Devices</div>
+          <div class="card-sub">✅ All devices connected</div>
+        </div>
+
+        <!-- Care Team -->
+        <div class="dash-card c-team" onclick="showToast('Opening care team')">
+          <span class="arrow">›</span>
+          <div class="card-icon">👥</div>
+          <div class="card-title">My Care Team</div>
+          <div class="card-sub">Dr. Sarah Ahmed<br>(Primary Physician)</div>
+        </div>
+
+        <!-- Health Snapshot -->
+        <div class="dash-card c-health" onclick="showToast('Opening health snapshot')">
+          <span class="arrow">›</span>
+          <div class="card-icon">❤️</div>
+          <div class="card-title">My Health Snapshot</div>
+          <div class="card-sub">BP: 120/80 mmHg<br>HR: 72 bpm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Medications Tab -->
+    <div id="tab-medications" class="sub-page">
+      <div class="page-title">Medications</div>
+      <div class="list-card">
+        <div class="list-icon">💊</div>
+        <div class="list-info">
+          <h4>Furosemide 50 mg</h4>
+          <p>Once daily • Next: 8:00 AM</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">💊</div>
+        <div class="list-info">
+          <h4>Metformin 500 mg</h4>
+          <p>Twice daily • After meals</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">💊</div>
+        <div class="list-info">
+          <h4>Atorvastatin 20 mg</h4>
+          <p>Once at night</p>
+        </div>
+      </div>
+      <div class="list-card" style="border: 1.5px dashed #23A879; background: var(--green-light)">
+        <div class="list-icon" style="background:white">+</div>
+        <div class="list-info">
+          <h4 style="color:var(--green)">Request LIORA Drugs</h4>
+          <p>Smart personalized medication</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications Tab -->
+    <div id="tab-notifications" class="sub-page">
+      <div class="page-title">Notifications</div>
+      <div class="list-card">
+        <div class="list-icon" style="background:#FFF4E6">🔔</div>
+        <div class="list-info">
+          <h4>Medication Alert</h4>
+          <p>Furosemide dose due in 25 minutes</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon" style="background:#E9F7F1">📅</div>
+        <div class="list-info">
+          <h4>Appointment Reminder</h4>
+          <p>Dr. Ahmad – Sat 5:30 PM</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon" style="background:#FDECEC">⚠️</div>
+        <div class="list-info">
+          <h4>Supply Running Low</h4>
+          <p>Metformin – 4 days remaining</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">💬</div>
+        <div class="list-info">
+          <h4>Message from Care Team</h4>
+          <p>Dr. Sarah: Please update your BP readings</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Authorized Persons Tab -->
+    <div id="tab-authorized" class="sub-page">
+      <div class="page-title">Authorized Persons</div>
+      <div class="list-card">
+        <div class="list-icon">👨‍⚕️</div>
+        <div class="list-info">
+          <h4>Dr. Sarah Ahmed</h4>
+          <p>Primary Physician • Full access</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">👨‍⚕️</div>
+        <div class="list-info">
+          <h4>Dr. Ahmad Khalil</h4>
+          <p>Cardiologist • Limited access</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">👩</div>
+        <div class="list-info">
+          <h4>Noura Al-Rashid</h4>
+          <p>Caregiver (Sister) • Medication + Appointments</p>
+        </div>
+      </div>
+      <div class="list-card" style="border: 1.5px dashed #23A879; background: var(--green-light)">
+        <div class="list-icon" style="background:white">+</div>
+        <div class="list-info">
+          <h4 style="color:var(--green)">Add Authorized Person</h4>
+          <p>Grant access to family or staff</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Medical Services Tab -->
+    <div id="tab-services" class="sub-page">
+      <div class="page-title">Medical Services</div>
+      <div class="list-card" onclick="showToast('Opening appointment booking')">
+        <div class="list-icon">📅</div>
+        <div class="list-info">
+          <h4>Book an Appointment</h4>
+          <p>Find doctors & available slots</p>
+        </div>
+      </div>
+      <div class="list-card" onclick="showToast('Opening smart devices')">
+        <div class="list-icon">⌚</div>
+        <div class="list-info">
+          <h4>My Smart Devices</h4>
+          <p>Blood pressure, glucose, wearable</p>
+        </div>
+      </div>
+      <div class="list-card" onclick="showToast('Searching medical services')">
+        <div class="list-icon">🔍</div>
+        <div class="list-info">
+          <h4>Search Medical Services</h4>
+          <p>Labs, imaging, pharmacies near you</p>
+        </div>
+      </div>
+      <div class="list-card">
+        <div class="list-icon">📋</div>
+        <div class="list-info">
+          <h4>Services History</h4>
+          <p>Past appointments & results</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <button class="nav-item active" onclick="switchTab('overview', this)">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Medical Record</span>
+      </button>
+      <button class="nav-item" onclick="switchTab('medications', this)">
+        <span class="nav-icon">💊</span>
+        <span class="nav-label">Medications</span>
+      </button>
+      <button class="nav-item" onclick="switchTab('notifications', this)">
+        <span class="nav-icon">🔔</span>
+        <span class="nav-label">Notifications</span>
+      </button>
+      <button class="nav-item" onclick="switchTab('authorized', this)">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">Authorized</span>
+      </button>
+      <button class="nav-item" onclick="switchTab('services', this)">
+        <span class="nav-icon">🏥</span>
+        <span class="nav-label">Services</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== PHYSICIAN PORTAL ==================== -->
+  <div id="physician-screen" class="screen">
+    <div class="patient-header">
+      <div class="ph-top">
+        <div class="ph-left">
+          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <div class="brand">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
+              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
+              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
+            </svg>
+            <span>Noblepharma</span>
+          </div>
+        </div>
+        <div class="ph-right">
+          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">2</span></button>
+          <button class="icon-btn" style="background:var(--navy-2);color:white;font-weight:700;font-size:13px" onclick="showToast('Physician Profile')">DR</button>
+        </div>
+      </div>
+      <div class="search-bar">
+        <span style="color:#23A879;font-size:18px">✦</span>
+        <input type="text" placeholder="Ask Noblepharma..." />
+        <span style="color:#8A9BB0;font-size:18px">🎤</span>
+      </div>
+    </div>
+
+    <div id="phys-tab-overview" class="patient-body sub-page active">
+      <div class="cards-grid">
+        <div class="dash-card c-appt" onclick="showToast('Appointments')">
+          <span class="arrow">›</span>
+          <div class="card-icon">📅</div>
+          <div class="card-title">Appointments</div>
+          <div class="card-sub">3 upcoming today<br>Next: 10:30 AM</div>
+        </div>
+        <div class="dash-card c-remind" onclick="showToast('Requests')">
+          <span class="arrow">›</span>
+          <div class="card-icon">📩</div>
+          <div class="card-title">Requests</div>
+          <div class="card-sub">5 pending consultation requests</div>
+        </div>
+        <div class="dash-card c-device" onclick="showToast('Notifications')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🔔</div>
+          <div class="card-title">Notifications</div>
+          <div class="card-sub">2 new clinical alerts</div>
+        </div>
+        <div class="dash-card c-health" onclick="showToast('Alerts')">
+          <span class="arrow">›</span>
+          <div class="card-icon">⚠️</div>
+          <div class="card-title">Alerts</div>
+          <div class="card-sub">1 urgent patient case</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="phys-tab-patients" class="sub-page">
+      <div class="page-title">My Patients</div>
+      <div class="list-card"><div class="list-icon">👩</div><div class="list-info"><h4>Lina Al-Rashid</h4><p>Hypertension • Last visit: 2 days ago</p></div></div>
+      <div class="list-card"><div class="list-icon">👨</div><div class="list-info"><h4>Omar Hassan</h4><p>Diabetes Type 2 • Active treatment</p></div></div>
+      <div class="list-card"><div class="list-icon">👩</div><div class="list-info"><h4>Sara Mahmoud</h4><p>Post-op follow-up</p></div></div>
+    </div>
+
+    <div id="phys-tab-auth" class="sub-page">
+      <div class="page-title">Authorization</div>
+      <div class="list-card"><div class="list-icon">🔐</div><div class="list-info"><h4>Access Controls</h4><p>Manage patient data permissions</p></div></div>
+      <div class="list-card"><div class="list-icon">✅</div><div class="list-info"><h4>Medical Approvals</h4><p>3 pending approvals</p></div></div>
+      <div class="list-card"><div class="list-icon">🚨</div><div class="list-info"><h4>Emergency Permissions</h4><p>Quick access overrides</p></div></div>
+    </div>
+
+    <div id="phys-tab-notif" class="sub-page">
+      <div class="page-title">Notifications</div>
+      <div class="list-card"><div class="list-icon">🔔</div><div class="list-info"><h4>Patient Alert</h4><p>Lina Al-Rashid – BP elevated</p></div></div>
+      <div class="list-card"><div class="list-icon">💬</div><div class="list-info"><h4>Clinical Message</h4><p>Lab results ready for review</p></div></div>
+    </div>
+
+    <div id="phys-tab-network" class="sub-page">
+      <div class="page-title">Medical Network</div>
+      <div class="list-card"><div class="list-icon">👥</div><div class="list-info"><h4>Caregivers Team</h4><p>Linked caregivers</p></div></div>
+      <div class="list-card"><div class="list-icon">👨‍⚕️</div><div class="list-info"><h4>Consulting Physicians</h4><p>8 colleagues</p></div></div>
+      <div class="list-card"><div class="list-icon">🏥</div><div class="list-info"><h4>Partner Centers</h4><p>Hospitals & clinics</p></div></div>
+    </div>
+
+    <div id="phys-tab-requests" class="sub-page">
+      <div class="page-title">Requests & Appointments</div>
+      <div class="list-card"><div class="list-icon">📩</div><div class="list-info"><h4>Consultation Requests</h4><p>5 waiting</p></div></div>
+      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4>Schedule Management</h4><p>Today's slots</p></div></div>
+      <div class="list-card"><div class="list-icon">🔄</div><div class="list-info"><h4>Reschedule / Cancel</h4><p>Manage bookings</p></div></div>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-item active" onclick="switchPhysTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span></button>
+      <button class="nav-item" onclick="switchPhysTab('patients', this)"><span class="nav-icon">👥</span><span class="nav-label">My Patients</span></button>
+      <button class="nav-item" onclick="switchPhysTab('auth', this)"><span class="nav-icon">🔐</span><span class="nav-label">Authorization</span></button>
+      <button class="nav-item" onclick="switchPhysTab('network', this)"><span class="nav-icon">🔗</span><span class="nav-label">Network</span></button>
+      <button class="nav-item" onclick="switchPhysTab('requests', this)"><span class="nav-icon">📅</span><span class="nav-label">Requests</span></button>
+    </div>
+  </div>
+
+  <!-- ==================== LIORA / PHARMACIST ==================== -->
+  <div id="liora-screen" class="screen">
+    <div class="patient-header">
+      <div class="ph-top">
+        <div class="ph-left">
+          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <div class="brand">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
+              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
+              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
+            </svg>
+            <span>Noblepharma</span>
+          </div>
+        </div>
+        <div class="ph-right">
+          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">4</span></button>
+          <button class="icon-btn" style="background:#7C4DFF;color:white;font-weight:700;font-size:13px" onclick="showToast('Pharmacist Profile')">PH</button>
+        </div>
+      </div>
+      <div class="search-bar">
+        <span style="color:#23A879;font-size:18px">✦</span>
+        <input type="text" placeholder="Ask Noblepharma..." />
+        <span style="color:#8A9BB0;font-size:18px">🎤</span>
+      </div>
+    </div>
+
+    <div id="liora-tab-overview" class="patient-body sub-page active">
+      <div class="cards-grid">
+        <div class="dash-card c-dose" onclick="showToast('My LIORAs')">
+          <span class="arrow">›</span>
+          <div class="card-icon">💊</div>
+          <div class="card-title">My LIORAs</div>
+          <div class="card-sub">12 active devices<br>3 need refill</div>
+        </div>
+        <div class="dash-card c-appt" onclick="showToast('Prescription Requests')">
+          <span class="arrow">›</span>
+          <div class="card-icon">📋</div>
+          <div class="card-title">Prescription Requests</div>
+          <div class="card-sub">8 pending verification</div>
+        </div>
+        <div class="dash-card c-remind" onclick="showToast('Notifications')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🔔</div>
+          <div class="card-title">Notifications</div>
+          <div class="card-sub">Inventory & system alerts</div>
+        </div>
+        <div class="dash-card c-health" onclick="showToast('Alerts')">
+          <span class="arrow">›</span>
+          <div class="card-icon">⚠️</div>
+          <div class="card-title">Alerts</div>
+          <div class="card-sub">2 urgent refill notices</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="liora-tab-lioras" class="sub-page">
+      <div class="page-title">My LIORAs</div>
+      <div class="list-card"><div class="list-icon">💊</div><div class="list-info"><h4>LIORA Device #A-204</h4><p>Status: Active • Cartridge 68%</p></div></div>
+      <div class="list-card"><div class="list-icon">💊</div><div class="list-info"><h4>LIORA Device #B-117</h4><p>Status: Needs refill</p></div></div>
+      <div class="list-card"><div class="list-icon">📦</div><div class="list-info"><h4>Inventory Management</h4><p>Drug tracking & stock levels</p></div></div>
+    </div>
+
+    <div id="liora-tab-auth" class="sub-page">
+      <div class="page-title">Authorization</div>
+      <div class="list-card"><div class="list-icon">✅</div><div class="list-info"><h4>Dispensing Approvals</h4><p>5 waiting verification</p></div></div>
+      <div class="list-card"><div class="list-icon">🔐</div><div class="list-info"><h4>Security Verifications</h4><p>Prescription validation</p></div></div>
+    </div>
+
+    <div id="liora-tab-notif" class="sub-page">
+      <div class="page-title">Notifications</div>
+      <div class="list-card"><div class="list-icon">🔔</div><div class="list-info"><h4>Inventory Alert</h4><p>Furosemide stock low</p></div></div>
+      <div class="list-card"><div class="list-icon">🔄</div><div class="list-info"><h4>System Update</h4><p>New LIORA firmware available</p></div></div>
+    </div>
+
+    <div id="liora-tab-network" class="sub-page">
+      <div class="page-title">Medical Network</div>
+      <div class="list-card"><div class="list-icon">👨‍⚕️</div><div class="list-info"><h4>Prescribing Physicians</h4><p>Linked doctors</p></div></div>
+      <div class="list-card"><div class="list-icon">🏥</div><div class="list-info"><h4>Healthcare Facilities</h4><p>Partner clinics & hospitals</p></div></div>
+    </div>
+
+    <div id="liora-tab-requests" class="sub-page">
+      <div class="page-title">Requests</div>
+      <div class="list-card"><div class="list-icon">📋</div><div class="list-info"><h4>Medication Orders</h4><p>12 new requests</p></div></div>
+      <div class="list-card"><div class="list-icon">🔄</div><div class="list-info"><h4>Refill Processing</h4><p>Status tracking</p></div></div>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-item active" onclick="switchLioraTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span></button>
+      <button class="nav-item" onclick="switchLioraTab('lioras', this)"><span class="nav-icon">💊</span><span class="nav-label">My LIORAs</span></button>
+      <button class="nav-item" onclick="switchLioraTab('auth', this)"><span class="nav-icon">🔐</span><span class="nav-label">Authorization</span></button>
+      <button class="nav-item" onclick="switchLioraTab('network', this)"><span class="nav-icon">🔗</span><span class="nav-label">Network</span></button>
+      <button class="nav-item" onclick="switchLioraTab('requests', this)"><span class="nav-icon">📋</span><span class="nav-label">Requests</span></button>
+    </div>
+  </div>
+
+  <!-- ==================== CAREGIVER ==================== -->
+  <div id="caregiver-screen" class="screen">
+    <div class="patient-header">
+      <div class="ph-top">
+        <div class="ph-left">
+          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <div class="brand">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
+              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
+              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
+            </svg>
+            <span>Noblepharma</span>
+          </div>
+        </div>
+        <div class="ph-right">
+          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">1</span></button>
+          <button class="icon-btn" style="background:#F39C12;color:white;font-weight:700;font-size:13px" onclick="showToast('Caregiver Profile')">CG</button>
+        </div>
+      </div>
+      <div class="search-bar">
+        <span style="color:#23A879;font-size:18px">✦</span>
+        <input type="text" placeholder="Ask Noblepharma..." />
+        <span style="color:#8A9BB0;font-size:18px">🎤</span>
+      </div>
+    </div>
+
+    <div id="care-tab-overview" class="patient-body sub-page active">
+      <div class="cards-grid">
+        <div class="dash-card c-team" onclick="showToast('My Hosts')">
+          <span class="arrow">›</span>
+          <div class="card-icon">👥</div>
+          <div class="card-title">My Hosts</div>
+          <div class="card-sub">2 care recipients<br>Lina & Omar</div>
+        </div>
+        <div class="dash-card c-remind" onclick="showToast('My Tasks')">
+          <span class="arrow">›</span>
+          <div class="card-icon">✅</div>
+          <div class="card-title">My Tasks</div>
+          <div class="card-sub">3 tasks due today</div>
+        </div>
+        <div class="dash-card c-device" onclick="showToast('Notifications')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🔔</div>
+          <div class="card-title">Notifications</div>
+          <div class="card-sub">Task & schedule updates</div>
+        </div>
+        <div class="dash-card c-health" onclick="showToast('Alerts')">
+          <span class="arrow">›</span>
+          <div class="card-icon">⚠️</div>
+          <div class="card-title">Alerts</div>
+          <div class="card-sub">1 care alert</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="care-tab-hosts" class="sub-page">
+      <div class="page-title">Hosts</div>
+      <div class="list-card"><div class="list-icon">👩</div><div class="list-info"><h4>Lina Al-Rashid</h4><p>Sister • Medications + Appointments</p></div></div>
+      <div class="list-card"><div class="list-icon">👴</div><div class="list-info"><h4>Omar Al-Rashid</h4><p>Father • Full care support</p></div></div>
+      <div class="list-card"><div class="list-icon">📊</div><div class="list-info"><h4>Daily Requirements</h4><p>Health tracking & care plans</p></div></div>
+    </div>
+
+    <div id="care-tab-auth" class="sub-page">
+      <div class="page-title">Authorization</div>
+      <div class="list-card"><div class="list-icon">🔐</div><div class="list-info"><h4>Access Permissions</h4><p>What you can view & do</p></div></div>
+      <div class="list-card"><div class="list-icon">✅</div><div class="list-info"><h4>Delegated Authorities</h4><p>Medical approvals granted</p></div></div>
+    </div>
+
+    <div id="care-tab-notif" class="sub-page">
+      <div class="page-title">Notifications</div>
+      <div class="list-card"><div class="list-icon">⏰</div><div class="list-info"><h4>Task Reminder</h4><p>Lina – 8:00 AM dose</p></div></div>
+      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4>Schedule Update</h4><p>Appointment moved to 5:30 PM</p></div></div>
+    </div>
+
+    <div id="care-tab-requests" class="sub-page">
+      <div class="page-title">Requests</div>
+      <div class="list-card"><div class="list-icon">🆘</div><div class="list-info"><h4>Assistance Requests</h4><p>Request help from care team</p></div></div>
+      <div class="list-card"><div class="list-icon">📦</div><div class="list-info"><h4>Supply Reorders</h4><p>Medication & supplies</p></div></div>
+      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4>Schedule Adjustments</h4><p>Change care times</p></div></div>
+    </div>
+
+    <div id="care-tab-network" class="sub-page">
+      <div class="page-title">Medical Network</div>
+      <div class="list-card"><div class="list-icon">👨‍⚕️</div><div class="list-info"><h4>Attending Physicians</h4><p>Dr. Sarah Ahmed</p></div></div>
+      <div class="list-card"><div class="list-icon">🏥</div><div class="list-info"><h4>Healthcare Providers</h4><p>Linked facilities</p></div></div>
+      <div class="list-card"><div class="list-icon">🚨</div><div class="list-info"><h4>Emergency Contacts</h4><p>Quick access numbers</p></div></div>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-item active" onclick="switchCareTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span></button>
+      <button class="nav-item" onclick="switchCareTab('hosts', this)"><span class="nav-icon">👥</span><span class="nav-label">Hosts</span></button>
+      <button class="nav-item" onclick="switchCareTab('auth', this)"><span class="nav-icon">🔐</span><span class="nav-label">Authorization</span></button>
+      <button class="nav-item" onclick="switchCareTab('requests', this)"><span class="nav-icon">📩</span><span class="nav-label">Requests</span></button>
+      <button class="nav-item" onclick="switchCareTab('network', this)"><span class="nav-icon">🔗</span><span class="nav-label">Network</span></button>
+    </div>
+  </div>
+
+  <!-- ==================== MEDICAL NETWORK ==================== -->
+  <div id="network-screen" class="screen">
+    <div class="patient-header">
+      <div class="ph-top">
+        <div class="ph-left">
+          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <div class="brand">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
+              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
+              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
+            </svg>
+            <span>Noblepharma</span>
+          </div>
+        </div>
+        <div class="ph-right">
+          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬</button>
+          <button class="icon-btn" style="background:#16A085;color:white;font-weight:700;font-size:13px" onclick="showToast('Network Profile')">MN</button>
+        </div>
+      </div>
+      <div class="search-bar">
+        <span style="color:#23A879;font-size:18px">✦</span>
+        <input type="text" placeholder="Search providers..." />
+        <span style="color:#8A9BB0;font-size:18px">🔍</span>
+      </div>
+    </div>
+
+    <div class="patient-body" style="padding-bottom:30px">
+      <div class="page-title" style="margin-bottom:14px">Healthcare Providers & Facilities</div>
+      <div class="cards-grid">
+        <div class="dash-card c-team" onclick="showToast('Hospitals')"><div class="card-icon">🏥</div><div class="card-title">Hospitals & Medical Centers</div><div class="card-sub">Inpatient & outpatient care</div></div>
+        <div class="dash-card c-dose" onclick="showToast('Laboratories')"><div class="card-icon">🧪</div><div class="card-title">Medical Laboratories</div><div class="card-sub">Blood tests & pathology</div></div>
+        <div class="dash-card c-appt" onclick="showToast('Radiology')"><div class="card-icon">📷</div><div class="card-title">Radiology & Imaging</div><div class="card-sub">X-Ray, MRI, CT, Ultrasound</div></div>
+        <div class="dash-card c-remind" onclick="showToast('Physiotherapy')"><div class="card-icon">🏃</div><div class="card-title">Physiotherapy & Rehab</div><div class="card-sub">Physical therapy services</div></div>
+        <div class="dash-card c-device" onclick="showToast('Endoscopy')"><div class="card-icon">🔬</div><div class="card-title">Endoscopy & Biopsy</div><div class="card-sub">Specialized diagnostics</div></div>
+        <div class="dash-card c-health" onclick="showToast('Dental')"><div class="card-icon">🦷</div><div class="card-title">Dental Clinics</div><div class="card-sub">Oral health & orthodontics</div></div>
+        <div class="dash-card" style="background:#E8F8F5" onclick="showToast('Dialysis')"><div class="card-icon">💧</div><div class="card-title">Dialysis Centers</div><div class="card-sub">Renal care & hemodialysis</div></div>
+        <div class="dash-card" style="background:#FDECEC" onclick="showToast('Blood Banks')"><div class="card-icon">🩸</div><div class="card-title">Blood Banks</div><div class="card-sub">Donation & transfusion</div></div>
+        <div class="dash-card" style="background:#F0EBFF" onclick="showToast('Equipment')"><div class="card-icon">🛠️</div><div class="card-title">Medical Equipment</div><div class="card-sub">Devices & supplies</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HEALTHCARE AUTHORITIES ==================== -->
+  <div id="authority-screen" class="screen">
+    <div class="patient-header">
+      <div class="ph-top">
+        <div class="ph-left">
+          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <div class="brand">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
+              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
+              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
+            </svg>
+            <span>Noblepharma</span>
+          </div>
+        </div>
+        <div class="ph-right">
+          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">3</span></button>
+          <button class="icon-btn" style="background:#6C5CE7;color:white;font-weight:700;font-size:13px" onclick="showToast('Authority Profile')">HA</button>
+        </div>
+      </div>
+      <div class="search-bar">
+        <span style="color:#23A879;font-size:18px">✦</span>
+        <input type="text" placeholder="Ask Noblepharma..." />
+        <span style="color:#8A9BB0;font-size:18px">🎤</span>
+      </div>
+    </div>
+
+    <div id="auth-tab-overview" class="patient-body sub-page active">
+      <div class="cards-grid">
+        <div class="dash-card c-team" onclick="showToast('Population Overview')"><div class="card-icon">👥</div><div class="card-title">Population Overview</div><div class="card-sub">2.4M covered</div></div>
+        <div class="dash-card c-appt" onclick="showToast('Precision Prevention')"><div class="card-icon">🛡️</div><div class="card-title">Precision Prevention</div><div class="card-sub">Risk programs</div></div>
+        <div class="dash-card c-remind" onclick="showToast('Disease Surveillance')"><div class="card-icon">📊</div><div class="card-title">Disease Surveillance</div><div class="card-sub">Active monitoring</div></div>
+        <div class="dash-card c-dose" onclick="showToast('Treatment Adherence')"><div class="card-icon">💊</div><div class="card-title">Treatment Adherence</div><div class="card-sub">Compliance rates</div></div>
+        <div class="dash-card c-device" onclick="showToast('Population Screening')"><div class="card-icon">🔍</div><div class="card-title">Population Screening</div><div class="card-sub">7 active programs</div></div>
+        <div class="dash-card c-health" onclick="showToast('Vaccination Programs')"><div class="card-icon">💉</div><div class="card-title">Vaccination Programs</div><div class="card-sub">94% coverage</div></div>
+        <div class="dash-card" style="background:#FDECEC;grid-column:span 2" onclick="showToast('Public Health Alerts')"><div class="card-icon">🚨</div><div class="card-title">Public Health Alerts</div><div class="card-sub">Current alerts & emergency notices</div></div>
+      </div>
+    </div>
+
+    <div id="auth-tab-stats" class="sub-page">
+      <div class="page-title">Population Statistics</div>
+      <div class="list-card"><div class="list-icon">📈</div><div class="list-info"><h4>Population Demographics</h4><p>Age, gender & geographic data</p></div></div>
+      <div class="list-card"><div class="list-icon">📊</div><div class="list-info"><h4>Growth Rate</h4><p>Birth & death statistics</p></div></div>
+    </div>
+
+    <div id="auth-tab-prevention" class="sub-page">
+      <div class="page-title">Prevention & Screening</div>
+      <div class="list-card"><div class="list-icon">🛡️</div><div class="list-info"><h4>Precision Prevention Programs</h4><p>Targeted risk reduction</p></div></div>
+      <div class="list-card"><div class="list-icon">🔍</div><div class="list-info"><h4>Screening Programs</h4><p>Community campaigns</p></div></div>
+      <div class="list-card"><div class="list-icon">💉</div><div class="list-info"><h4>Vaccination Programs</h4><p>Coverage & scheduling</p></div></div>
+    </div>
+
+    <div id="auth-tab-surveillance" class="sub-page">
+      <div class="page-title">Disease Surveillance</div>
+      <div class="list-card"><div class="list-icon">🫀</div><div class="list-info"><h4>Chronic Diseases</h4><p>Diabetes, hypertension tracking</p></div></div>
+      <div class="list-card"><div class="list-icon">🦠</div><div class="list-info"><h4>Infectious & Contagious</h4><p>Outbreak monitoring</p></div></div>
+      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4>Seasonal / Epidemic</h4><p>Seasonal patterns</p></div></div>
+    </div>
+
+    <div id="auth-tab-reports" class="sub-page">
+      <div class="page-title">Reports & Alerts</div>
+      <div class="list-card"><div class="list-icon">📑</div><div class="list-info"><h4>Performance Reports</h4><p>Weekly & monthly</p></div></div>
+      <div class="list-card"><div class="list-icon">🚨</div><div class="list-info"><h4>Public Health Alerts</h4><p>Current notices</p></div></div>
+      <div class="list-card"><div class="list-icon">⚠️</div><div class="list-info"><h4>Medical Error Reports</h4><p>Anonymized analysis</p></div></div>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-item active" onclick="switchAuthTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span></button>
+      <button class="nav-item" onclick="switchAuthTab('stats', this)"><span class="nav-icon">📊</span><span class="nav-label">Statistics</span></button>
+      <button class="nav-item" onclick="switchAuthTab('prevention', this)"><span class="nav-icon">🛡️</span><span class="nav-label">Prevention</span></button>
+      <button class="nav-item" onclick="switchAuthTab('surveillance', this)"><span class="nav-icon">🦠</span><span class="nav-label">Surveillance</span></button>
+      <button class="nav-item" onclick="switchAuthTab('reports', this)"><span class="nav-icon">📑</span><span class="nav-label">Reports</span></button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script>
+    // ========== NAVIGATION ==========
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function enterPortal(portal) {
+      const map = {
+        patient: 'patient-screen',
+        physician: 'physician-screen',
+        liora: 'liora-screen',
+        caregiver: 'caregiver-screen',
+        network: 'network-screen',
+        authority: 'authority-screen'
+      };
+      showScreen(map[portal]);
+    }
+
+    // ========== PATIENT TABS ==========
+    function switchTab(tabName, btn) {
+      document.querySelectorAll('#patient-screen .sub-page').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + tabName).classList.add('active');
+      document.querySelectorAll('#patient-screen .bottom-nav .nav-item').forEach(n => n.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // ========== PHYSICIAN TABS ==========
+    function switchPhysTab(tabName, btn) {
+      document.querySelectorAll('#physician-screen .sub-page').forEach(p => p.classList.remove('active'));
+      document.getElementById('phys-tab-' + tabName).classList.add('active');
+      document.querySelectorAll('#physician-screen .bottom-nav .nav-item').forEach(n => n.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // ========== LIORA TABS ==========
+    function switchLioraTab(tabName, btn) {
+      document.querySelectorAll('#liora-screen .sub-page').forEach(p => p.classList.remove('active'));
+      document.getElementById('liora-tab-' + tabName).classList.add('active');
+      document.querySelectorAll('#liora-screen .bottom-nav .nav-item').forEach(n => n.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // ========== CAREGIVER TABS ==========
+    function switchCareTab(tabName, btn) {
+      document.querySelectorAll('#caregiver-screen .sub-page').forEach(p => p.classList.remove('active'));
+      document.getElementById('care-tab-' + tabName).classList.add('active');
+      document.querySelectorAll('#caregiver-screen .bottom-nav .nav-item').forEach(n => n.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // ========== AUTHORITY TABS ==========
+    function switchAuthTab(tabName, btn) {
+      document.querySelectorAll('#authority-screen .sub-page').forEach(p => p.classList.remove('active'));
+      document.getElementById('auth-tab-' + tabName).classList.add('active');
+      document.querySelectorAll('#authority-screen .bottom-nav .nav-item').forEach(n => n.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // ========== SIGN UP / SIGN IN ==========
+    let selectedRole = 'patient';
+
+    // Remember last role (for demo Sign In)
+    let lastRole = localStorage.getItem('noble_role') || 'patient';
+    let lastName = localStorage.getItem('noble_name') || 'Lina Al-Rashid';
+
+    function openSignup() {
+      document.getElementById('signup-modal').classList.add('show');
+    }
+
+    function closeSignup(e) {
+      if (e.target.id === 'signup-modal') {
+        document.getElementById('signup-modal').classList.remove('show');
+      }
+    }
+
+    function selectRole(el) {
+      document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedRole = el.dataset.role;
+    }
+
+    function completeSignup() {
+      const name = document.getElementById('signup-name').value || 'User';
+      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      
+      // Save for next Sign In
+      lastRole = selectedRole;
+      lastName = name;
+      localStorage.setItem('noble_role', selectedRole);
+      localStorage.setItem('noble_name', name);
+
+      // Update header if exists
+      const avatarEl = document.getElementById('user-avatar');
+      const nameEl = document.getElementById('user-name');
+      if (avatarEl) avatarEl.textContent = initials;
+      if (nameEl) nameEl.textContent = name.split(' ')[0];
+
+      document.getElementById('signup-modal').classList.remove('show');
+      showToast('Account created successfully!');
+
+      // Go DIRECTLY to the selected portal
+      setTimeout(() => {
+        enterPortal(selectedRole);
+      }, 500);
+    }
+
+    function doSignIn() {
+      // Go directly to the last used / saved account portal
+      const role = localStorage.getItem('noble_role') || 'patient';
+      const name = localStorage.getItem('noble_name') || 'Lina Al-Rashid';
+      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+      const avatarEl = document.getElementById('user-avatar');
+      const nameEl = document.getElementById('user-name');
+      if (avatarEl) avatarEl.textContent = initials;
+      if (nameEl) nameEl.textContent = name.split(' ')[0];
+
+      showToast('Welcome back, ' + name.split(' ')[0]);
+      setTimeout(() => {
+        enterPortal(role);
+      }, 400);
+    }
+
+    // ========== ACTIONS ==========
+    function markTaken() {
+      showToast('✅ Dose marked as taken');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    // Prevent zoom on double tap (mobile)
+    document.addEventListener('dblclick', e => e.preventDefault(), { passive: false });
+
+    // Better touch support for iOS (file:// restrictions workaround)
+    document.addEventListener('DOMContentLoaded', function() {
+      // Force reflow to help some iOS WebViews
+      document.body.offsetHeight;
+
+      // Add touch feedback class
+      document.body.addEventListener('touchstart', function(e) {
+        const target = e.target.closest('button, .btn, .role-card, .portal-card, .dash-card, .nav-item, .list-card, .menu-btn, .icon-btn, .user-chip');
+        if (target) {
+          target.style.opacity = '0.7';
+        }
+      }, { passive: true });
+
+      document.body.addEventListener('touchend', function(e) {
+        const target = e.target.closest('button, .btn, .role-card, .portal-card, .dash-card, .nav-item, .list-card, .menu-btn, .icon-btn, .user-chip');
+        if (target) {
+          target.style.opacity = '';
+        }
+      }, { passive: true });
+    });
+
+    // Fallback: if localStorage is blocked on iOS file://
+    try {
+      localStorage.setItem('noble_test', '1');
+      localStorage.removeItem('noble_test');
+    } catch (e) {
+      console.log('localStorage not available in this context');
+    }
+  </script>
+</body>
+</html>
