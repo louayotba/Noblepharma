@@ -13,14 +13,20 @@
       --navy-2: #173B5D;
       --green: #23A879;
       --green-light: #E9F7F1;
-      --bg: #F3F6F8;
+      --bg: #F0F4F8;
       --white: #FFFFFF;
       --text: #1A2B3C;
       --text-muted: #6B7C8F;
       --danger: #E74C3C;
       --orange: #F39C12;
-      --card-shadow: 0 4px 20px rgba(16, 43, 70, 0.08);
-      --radius: 18px;
+      --card-shadow: 0 6px 24px rgba(16, 43, 70, 0.07);
+      --radius: 20px;
+      --blue-soft: #E8F1FF;
+      --green-soft: #E6F7EF;
+      --orange-soft: #FFF4E5;
+      --purple-soft: #F0EBFF;
+      --teal-soft: #E6F7F4;
+      --red-soft: #FDECEC;
     }
 
     * {
@@ -197,46 +203,116 @@
     .role-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .role-grid .role-card {
-      padding: 14px 10px;
-    }
-
-    .role-grid .role-icon {
-      font-size: 24px;
-      margin-bottom: 6px;
-    }
-
-    .role-grid .role-name {
-      font-size: 13px;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
     .role-card {
-      background: var(--bg);
-      border: 2px solid transparent;
-      border-radius: 16px;
-      padding: 18px 12px;
+      background: #F7FAFC;
+      border: 2.5px solid transparent;
+      border-radius: 18px;
+      padding: 18px 12px 16px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .role-card:active, .role-card.selected {
       border-color: var(--green);
       background: var(--green-light);
+      box-shadow: 0 4px 14px rgba(35, 168, 121, 0.18);
     }
 
     .role-icon {
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 8px;
+      line-height: 1;
     }
 
     .role-name {
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 13.5px;
+      font-weight: 700;
       color: var(--navy);
+      letter-spacing: -0.2px;
+    }
+
+    /* Social login */
+    .social-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 18px 0 14px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .social-divider::before, .social-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #E2E8F0;
+    }
+    .social-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .social-btn {
+      flex: 1;
+      height: 48px;
+      border-radius: 12px;
+      border: 1.5px solid #E2E8F0;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .social-btn:active {
+      background: #F7FAFC;
+      transform: scale(0.97);
+    }
+    .social-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: #F0F4F8;
+      border-radius: 10px;
+      padding: 3px;
+      border: 1px solid #E2E8F0;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #8A9BB0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .lang-btn.active {
+      background: white;
+      color: var(--navy);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .auth-lang {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      /* fixed position — never moves on language switch */
     }
 
     .form-group {
@@ -369,7 +445,7 @@
 
     .portal-card {
       background: white;
-      border-radius: var(--radius);
+      border-radius: 20px;
       padding: 20px 16px;
       box-shadow: var(--card-shadow);
       cursor: pointer;
@@ -377,20 +453,20 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      min-height: 140px;
+      min-height: 148px;
     }
     .portal-card:active {
       transform: scale(0.97);
     }
 
     .portal-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+      width: 50px;
+      height: 50px;
+      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 26px;
       margin-bottom: 14px;
     }
 
@@ -398,13 +474,14 @@
       font-size: 15px;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: 4px;
+      margin-bottom: 5px;
+      letter-spacing: -0.2px;
     }
 
     .portal-desc {
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-muted);
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
     /* Colors for portal cards */
@@ -545,10 +622,11 @@
       display: flex;
       align-items: center;
       background: #F0F4F8;
-      border-radius: 14px;
-      padding: 0 14px;
-      height: 46px;
+      border-radius: 16px;
+      padding: 0 16px;
+      height: 48px;
       gap: 10px;
+      border: 1px solid #E4EAF0;
     }
 
     .search-bar input {
@@ -573,79 +651,104 @@
     .cards-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
     }
 
     .dash-card {
       background: white;
-      border-radius: 16px;
-      padding: 16px;
+      border-radius: 20px;
+      padding: 18px 16px 16px;
       box-shadow: var(--card-shadow);
       cursor: pointer;
-      transition: transform 0.15s;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
       position: relative;
-      min-height: 150px;
+      min-height: 168px;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
     .dash-card:active {
       transform: scale(0.97);
+      box-shadow: 0 3px 12px rgba(16, 43, 70, 0.06);
     }
 
     .dash-card .arrow {
       position: absolute;
-      top: 14px;
+      top: 16px;
       right: 14px;
       color: #A0AEC0;
-      font-size: 14px;
+      font-size: 18px;
+      font-weight: 300;
+      opacity: 0.7;
     }
 
     .card-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      margin-bottom: 12px;
+      font-size: 26px;
+      margin-bottom: 14px;
+      flex-shrink: 0;
     }
 
     .card-title {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+      line-height: 1.25;
     }
 
     .card-sub {
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.45;
       flex: 1;
     }
 
+    .card-sub strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
     .card-action {
-      margin-top: 10px;
-      background: var(--navy-2);
+      margin-top: 12px;
+      background: #2B6CB0;
       color: white;
       border: none;
-      border-radius: 10px;
-      height: 34px;
-      font-size: 12px;
+      border-radius: 12px;
+      height: 36px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       width: 100%;
+      transition: background 0.15s;
+    }
+    .card-action:active {
+      background: #1E4E8C;
     }
 
-    /* Card colors matching the mock */
-    .c-dose { background: #EEF5FF; }
-    .c-dose .card-icon { background: #D6E8FF; }
-    .c-appt { background: #E9F7F1; }
+    /* Soft colored cards matching the reference design */
+    .c-dose { background: #EEF4FF; }
+    .c-dose .card-icon { background: #D6E6FF; }
+    .c-appt { background: #E8F7F0; }
     .c-appt .card-icon { background: #C8EEDD; }
-    .c-remind { background: #FFF6E9; }
+    .c-remind { background: #FFF6E8; }
     .c-remind .card-icon { background: #FFE8C4; }
-    .c-device { background: #F0EBFF; }
+    .c-device { background: #F1ECFF; }
     .c-device .card-icon { background: #DDD4FF; }
     .c-team { background: #E8F8F5; }
     .c-team .card-icon { background: #C5EDE5; }
@@ -661,29 +764,43 @@
       background: white;
       display: flex;
       justify-content: space-around;
-      padding: 8px 4px 12px;
-      box-shadow: 0 -2px 16px rgba(0,0,0,0.06);
+      padding: 10px 4px 14px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.06);
       z-index: 60;
       max-width: 480px;
       margin: 0 auto;
+      border-top: 1px solid #EEF1F5;
     }
 
     .nav-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 6px 4px;
-      min-width: 62px;
+      padding: 4px 2px;
+      min-width: 64px;
       color: #8A9BB0;
       transition: color 0.2s;
+      position: relative;
     }
 
     .nav-item.active {
-      color: var(--green);
+      color: #2B6CB0;
+    }
+
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 3px;
+      background: #2B6CB0;
+      border-radius: 3px;
     }
 
     .nav-item .nav-icon {
@@ -711,42 +828,48 @@
       font-size: 20px;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      letter-spacing: -0.3px;
     }
 
     .list-card {
       background: white;
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 16px;
       margin-bottom: 12px;
       box-shadow: var(--card-shadow);
       display: flex;
       align-items: center;
       gap: 14px;
+      transition: transform 0.15s;
+    }
+    .list-card:active {
+      transform: scale(0.98);
     }
 
     .list-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
       background: var(--green-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 22px;
       flex-shrink: 0;
     }
 
     .list-info h4 {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--navy);
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
     .list-info p {
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-muted);
+      line-height: 1.4;
     }
 
     /* ========== OTHER PORTALS (simplified but nice) ========== */
@@ -762,7 +885,7 @@
       z-index: 40;
     }
 
-    .back-btn {
+    .back-btn, .menu-btn {
       width: 40px;
       height: 40px;
       border-radius: 12px;
@@ -771,9 +894,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
       color: var(--navy);
+      flex-shrink: 0;
+    }
+    .back-btn {
+      font-size: 22px;
+      font-weight: 600;
     }
 
     .portal-title {
@@ -822,6 +950,172 @@
       margin-top: 8px;
     }
 
+    /* Authority stats & charts */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .stat-box {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+    }
+    .stat-box .sv {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .stat-box .sl {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    .stat-box.accent-blue .sv { color: #2B6CB0; }
+    .stat-box.accent-green .sv { color: #23A879; }
+    .stat-box.accent-orange .sv { color: #E67E22; }
+    .stat-box.accent-purple .sv { color: #7C4DFF; }
+    .stat-box.accent-red .sv { color: #E74C3C; }
+
+    .chart-card {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 14px;
+    }
+    .chart-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .bar-label {
+      width: 72px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .bar-track {
+      flex: 1;
+      height: 12px;
+      background: #EEF2F6;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 8px;
+      transition: width 0.6s ease;
+    }
+    .bar-val {
+      width: 42px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .pie-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-top: 12px;
+    }
+    .pie-legend span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .ring-chart {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 8px auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .ring-inner {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .ring-inner strong {
+      font-size: 20px;
+      color: var(--navy);
+      font-weight: 800;
+    }
+    .ring-inner small {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .detail-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #2B6CB0;
+      margin-bottom: 12px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .kpi-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .kpi-chip {
+      background: white;
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: var(--card-shadow);
+      min-width: 110px;
+      flex-shrink: 0;
+    }
+    .kpi-chip .k {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .kpi-chip .l {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
     /* Toast */
     .toast {
       position: fixed;
@@ -863,29 +1157,92 @@
         transform: translateX(-50%);
       }
     }
+
+    /* RTL support — content only; top bar layout stays fixed LTR */
+    [dir="rtl"] .dash-card .arrow {
+      /* keep arrow on the right visually */
+    }
+    [dir="rtl"] .list-card {
+      text-align: right;
+    }
+    [dir="rtl"] .list-info {
+      text-align: right;
+    }
+    [dir="rtl"] .portal-card {
+      text-align: right;
+    }
+    [dir="rtl"] .welcome {
+      text-align: right;
+    }
+    [dir="rtl"] .card-title,
+    [dir="rtl"] .card-sub {
+      text-align: right;
+    }
+    [dir="rtl"] .modal-sheet {
+      text-align: right;
+    }
+    [dir="rtl"] .form-group label {
+      text-align: right;
+    }
+    [dir="rtl"] .form-group input {
+      text-align: right;
+    }
+    [dir="rtl"] .role-card {
+      text-align: center;
+    }
+    [dir="rtl"] .alert-item {
+      text-align: right;
+    }
+    [dir="rtl"] .page-title {
+      text-align: right;
+    }
+    [dir="rtl"] .section-title {
+      text-align: right;
+    }
+    /* Keep header/top-bar/ph-top layout unchanged (no flex reverse) */
+    [dir="rtl"] .top-bar,
+    [dir="rtl"] .ph-top,
+    [dir="rtl"] .ph-left,
+    [dir="rtl"] .ph-right,
+    [dir="rtl"] .brand,
+    [dir="rtl"] .logo-area,
+    [dir="rtl"] .search-bar,
+    [dir="rtl"] .bottom-nav {
+      direction: ltr;
+    }
+    [dir="rtl"] .patient-body,
+    [dir="rtl"] .portal-body,
+    [dir="rtl"] .portal-content,
+    [dir="rtl"] .sub-page {
+      direction: rtl;
+    }
   </style>
 </head>
 <body>
 
   <!-- ==================== AUTH SCREEN ==================== -->
-  <div id="auth-screen" class="screen active">
+  <div id="auth-screen" class="screen active" style="position:relative">
+    <div class="auth-lang lang-toggle">
+      <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">عر</button>
+    </div>
     <div class="auth-logo" style="margin-bottom:18px;">
       <img src="data:image/png;base64,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" alt="Noble Pharma" style="width:260px; max-width:85%; height:auto; display:block; margin:0 auto;" />
     </div>
-    <div class="auth-tagline" style="font-size:20px; font-style:italic; font-weight:500; opacity:0.95; margin-top:8px; letter-spacing:0.4px; color:white;">
+    <div class="auth-tagline" style="font-size:20px; font-style:italic; font-weight:500; opacity:0.95; margin-top:8px; letter-spacing:0.4px; color:white;" data-i18n="tagline">
       Solidarity For Life
     </div>
 
     <div class="auth-buttons" style="margin-top:36px;">
-      <button class="btn btn-primary" onclick="doSignIn()">
+      <button class="btn btn-primary" onclick="doSignIn()" data-i18n="sign_in">
         Sign In
       </button>
-      <button class="btn btn-outline" onclick="openSignup()">
+      <button class="btn btn-outline" onclick="openSignup()" data-i18n="sign_up">
         Sign Up
       </button>
     </div>
 
-    <div class="auth-footer">
+    <div class="auth-footer" data-i18n="demo_footer">
       Demo Prototype • No real data stored
     </div>
   </div>
@@ -894,50 +1251,63 @@
   <div id="signup-modal" class="modal-overlay" onclick="closeSignup(event)">
     <div class="modal-sheet" onclick="event.stopPropagation()">
       <div class="modal-handle"></div>
-      <div class="modal-title">Create Account</div>
-      <div class="modal-sub">Choose your role to continue</div>
+      <div class="modal-title" data-i18n="create_account">Create Account</div>
+      <div class="modal-sub" data-i18n="choose_role">Choose your role to continue</div>
 
       <div class="role-grid">
         <div class="role-card selected" data-role="patient" onclick="selectRole(this)">
-          <div class="role-icon">🧑‍⚕️</div>
-          <div class="role-name">Patient</div>
+          <div class="role-icon">🧑‍🦱</div>
+          <div class="role-name" data-i18n="role_patient">Patient</div>
         </div>
         <div class="role-card" data-role="physician" onclick="selectRole(this)">
-          <div class="role-icon">👨‍⚕️</div>
-          <div class="role-name">Physician</div>
+          <div class="role-icon">🩺</div>
+          <div class="role-name" data-i18n="role_physician">Physician</div>
         </div>
         <div class="role-card" data-role="liora" onclick="selectRole(this)">
           <div class="role-icon">💊</div>
-          <div class="role-name">Pharmacist</div>
+          <div class="role-name" data-i18n="role_pharmacist">Pharmacist</div>
         </div>
         <div class="role-card" data-role="caregiver" onclick="selectRole(this)">
-          <div class="role-icon">❤️</div>
-          <div class="role-name">Caregiver</div>
+          <div class="role-icon">🤝</div>
+          <div class="role-name" data-i18n="role_caregiver">Caregiver</div>
         </div>
         <div class="role-card" data-role="network" onclick="selectRole(this)">
           <div class="role-icon">🏥</div>
-          <div class="role-name">Medical Network</div>
+          <div class="role-name" data-i18n="role_network">Medical Network</div>
         </div>
         <div class="role-card" data-role="authority" onclick="selectRole(this)">
           <div class="role-icon">🏛️</div>
-          <div class="role-name">Authorities</div>
+          <div class="role-name" data-i18n="role_authority">Authorities</div>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="signup-name" placeholder="Enter your full name" value="Lina Al-Rashid">
+        <label data-i18n="full_name">Full Name</label>
+        <input type="text" id="signup-name" data-i18n-placeholder="placeholder_name" placeholder="Enter your full name" value="Lina Al-Rashid">
       </div>
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="signup-email" placeholder="you@example.com" value="lina@email.com">
+        <label data-i18n="email">Email</label>
+        <input type="email" id="signup-email" data-i18n-placeholder="placeholder_email" placeholder="you@example.com" value="lina@email.com">
       </div>
       <div class="form-group">
-        <label>Password</label>
+        <label data-i18n="password">Password</label>
         <input type="password" id="signup-pass" placeholder="••••••••" value="demo1234">
       </div>
 
-      <button class="btn-green" onclick="completeSignup()">Create Account</button>
+      <button class="btn-green" onclick="completeSignup()" data-i18n="create_account_btn">Create Account</button>
+
+      <div class="social-divider"><span data-i18n="or_continue">or continue with</span></div>
+      <div class="social-row">
+        <button class="social-btn" onclick="showToast('Google Sign-In')" title="Google">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        </button>
+        <button class="social-btn" onclick="showToast('Apple Sign-In')" title="Apple">
+          <svg viewBox="0 0 24 24"><path fill="#111" d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+        </button>
+        <button class="social-btn" onclick="showToast('Microsoft Sign-In')" title="Microsoft">
+          <svg viewBox="0 0 24 24"><path fill="#F25022" d="M1 1h10v10H1z"/><path fill="#00A4EF" d="M13 1h10v10H13z"/><path fill="#7FBA00" d="M1 13h10v10H1z"/><path fill="#FFB900" d="M13 13h10v10H13z"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -945,13 +1315,19 @@
   <div id="portal-screen" class="screen">
     <div class="top-bar">
       <div class="logo-area">
-        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
-          <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
-          <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
-        </svg>
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;flex-shrink:0">
+  <circle cx="20" cy="20" r="18" fill="#E8F4FD"/>
+  <path d="M20 8c-3.5 0-6.2 2.4-6.2 5.8 0 2.2 1.2 4.1 3 5.1v1.2c-4.2.9-7.3 3.8-7.3 7.4h2.4c0-2.6 2.5-4.6 5.6-4.6h4.8c3.1 0 5.6 2 5.6 4.6h2.4c0-3.6-3.1-6.5-7.3-7.4v-1.2c1.8-1 3-2.9 3-5.1C26.2 10.4 23.5 8 20 8z" fill="#1A5F9E"/>
+  <path d="M28 11c0 0 1.5-1.2 3.2-.3 1.2.6 1.5 2.1.8 3.2-.9 1.5-3.2 2.2-4.5 1.1-.6-.5-.7-1.3-.5-2 .3-1 .7-1.5 1-2z" fill="#23A879"/>
+  <path d="M29.2 12.2c.4.8.3 1.5-.2 2" stroke="#1A8F65" stroke-width="0.8" fill="none"/>
+</svg>
         <span class="logo-text">Noblepharma</span>
       </div>
+
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">عر</button>
+          </div>
       <div class="user-chip" onclick="showToast('Profile menu (demo)')">
         <div class="avatar" id="user-avatar">LA</div>
         <span style="font-size:13px;font-weight:600;color:var(--navy)" id="user-name">Lina</span>
@@ -960,52 +1336,52 @@
 
     <div class="portal-content">
       <div class="welcome">
-        <h1>Welcome back</h1>
-        <p>Select a portal to continue</p>
+        <h1 data-i18n="welcome_back">Welcome back</h1>
+        <p data-i18n="select_portal">Select a portal to continue</p>
       </div>
 
       <div class="portal-grid">
         <div class="portal-card p-patient" onclick="enterPortal('patient')">
           <div class="portal-icon">🧑‍⚕️</div>
-          <div class="portal-name">Patient</div>
-          <div class="portal-desc">Medications, appointments & health records</div>
+          <div class="portal-name" data-i18n="role_patient">Patient</div>
+          <div class="portal-desc" data-i18n="desc_patient">Medications, appointments & health records</div>
         </div>
 
         <div class="portal-card p-physician" onclick="enterPortal('physician')">
           <div class="portal-icon">👨‍⚕️</div>
-          <div class="portal-name">Physician</div>
-          <div class="portal-desc">Patients, requests & consultations</div>
+          <div class="portal-name" data-i18n="role_physician">Physician</div>
+          <div class="portal-desc" data-i18n="desc_physician">Patients, requests & consultations</div>
         </div>
 
         <div class="portal-card p-liora" onclick="enterPortal('liora')">
           <div class="portal-icon">💊</div>
-          <div class="portal-name">LIORA System</div>
-          <div class="portal-desc">Pharmacists & smart dispensing</div>
+          <div class="portal-name" data-i18n="role_pharmacist">Pharmacist</div>
+          <div class="portal-desc" data-i18n="desc_pharmacist">Pharmacists & smart dispensing</div>
         </div>
 
         <div class="portal-card p-caregiver" onclick="enterPortal('caregiver')">
           <div class="portal-icon">❤️</div>
-          <div class="portal-name">Caregivers</div>
-          <div class="portal-desc">Family & care support tools</div>
+          <div class="portal-name" data-i18n="role_caregiver">Caregiver</div>
+          <div class="portal-desc" data-i18n="desc_caregiver">Family & care support tools</div>
         </div>
 
         <div class="portal-card p-network" onclick="enterPortal('network')">
           <div class="portal-icon">🏥</div>
-          <div class="portal-name">Medical Network</div>
-          <div class="portal-desc">Hospitals, labs & providers</div>
+          <div class="portal-name" data-i18n="role_network">Medical Network</div>
+          <div class="portal-desc" data-i18n="desc_network">Hospitals, labs & providers</div>
         </div>
 
         <div class="portal-card p-authority" onclick="enterPortal('authority')">
           <div class="portal-icon">🏛️</div>
-          <div class="portal-name">Authorities</div>
-          <div class="portal-desc">Public health & population data</div>
+          <div class="portal-name" data-i18n="role_authority">Authorities</div>
+          <div class="portal-desc" data-i18n="desc_authority">Public health & population data</div>
         </div>
       </div>
 
       <div class="alerts-section">
         <div class="alerts-header">
           <span style="font-size:18px">🔔</span>
-          <h3>System Alerts</h3>
+          <h3 data-i18n="system_alerts">System Alerts</h3>
         </div>
         <div class="alert-item">
           <div class="alert-dot"></div>
@@ -1028,22 +1404,27 @@
     <div class="patient-header">
       <div class="ph-top">
         <div class="ph-left">
-          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <button class="menu-btn" onclick="goBack()">←</button>
           <div class="brand">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
-              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
-              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
-            </svg>
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;flex-shrink:0">
+  <circle cx="20" cy="20" r="18" fill="#E8F4FD"/>
+  <path d="M20 8c-3.5 0-6.2 2.4-6.2 5.8 0 2.2 1.2 4.1 3 5.1v1.2c-4.2.9-7.3 3.8-7.3 7.4h2.4c0-2.6 2.5-4.6 5.6-4.6h4.8c3.1 0 5.6 2 5.6 4.6h2.4c0-3.6-3.1-6.5-7.3-7.4v-1.2c1.8-1 3-2.9 3-5.1C26.2 10.4 23.5 8 20 8z" fill="#1A5F9E"/>
+  <path d="M28 11c0 0 1.5-1.2 3.2-.3 1.2.6 1.5 2.1.8 3.2-.9 1.5-3.2 2.2-4.5 1.1-.6-.5-.7-1.3-.5-2 .3-1 .7-1.5 1-2z" fill="#23A879"/>
+  <path d="M29.2 12.2c.4.8.3 1.5-.2 2" stroke="#1A8F65" stroke-width="0.8" fill="none"/>
+</svg>
             <span>Noblepharma</span>
           </div>
         </div>
         <div class="ph-right">
-          <button class="icon-btn notif-btn" onclick="showToast('3 new messages')">
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">عر</button>
+          </div>
+        <button class="icon-btn notif-btn" onclick="showToast('3 new messages')">
             💬
             <span class="badge">3</span>
           </button>
-          <button class="icon-btn" style="background:var(--green);color:white;font-weight:700;font-size:13px" onclick="showToast('Profile')">
+          <button class="icon-btn" style="background:#2B6CB0;color:white;font-weight:700;font-size:13px" onclick="showToast('Profile')">
             LA
           </button>
         </div>
@@ -1062,24 +1443,30 @@
         <div class="dash-card c-dose" onclick="showToast('Opening medication details')">
           <span class="arrow">›</span>
           <div class="card-icon">💊</div>
-          <div class="card-title">My Next Dose</div>
-          <div class="card-sub">Furosemide 50 mg<br>⏰ 8:00 AM</div>
-          <button class="card-action" onclick="event.stopPropagation(); markTaken()">Mark as Taken</button>
+          <div class="card-title" data-i18n="my_next_dose">My Next Dose</div>
+          <div class="card-sub">
+            <strong>Furosemide 50 mg</strong><br>
+            <span class="card-meta">⏰ 8:00 AM</span>
+          </div>
+          <button class="card-action" onclick="event.stopPropagation(); markTaken()" data-i18n="mark_taken">Mark as Taken</button>
         </div>
 
         <!-- Next Appointment -->
         <div class="dash-card c-appt" onclick="showToast('Opening appointment')">
           <span class="arrow">›</span>
           <div class="card-icon">📅</div>
-          <div class="card-title">My Next Appointment</div>
-          <div class="card-sub">Dr. Ahmad<br>Sat, Apr 26 • 5:30 PM</div>
+          <div class="card-title" data-i18n="my_next_appt">My Next Appointment</div>
+          <div class="card-sub">
+            <strong>Dr. Ahmad</strong><br>
+            <span class="card-meta">📅 Sat, Apr 26 • 5:30 PM</span>
+          </div>
         </div>
 
         <!-- Reminders -->
         <div class="dash-card c-remind" onclick="showToast('Opening reminders')">
           <span class="arrow">›</span>
           <div class="card-icon">🔔</div>
-          <div class="card-title">My Reminders</div>
+          <div class="card-title" data-i18n="my_reminders">My Reminders</div>
           <div class="card-sub">Your medication supply is running low.</div>
         </div>
 
@@ -1087,156 +1474,180 @@
         <div class="dash-card c-device" onclick="showToast('Opening devices')">
           <span class="arrow">›</span>
           <div class="card-icon">⌚</div>
-          <div class="card-title">My Devices</div>
-          <div class="card-sub">✅ All devices connected</div>
+          <div class="card-title" data-i18n="my_devices">My Devices</div>
+          <div class="card-sub"><span style="color:#23A879;font-weight:600">✓</span> All devices connected</div>
         </div>
 
         <!-- Care Team -->
         <div class="dash-card c-team" onclick="showToast('Opening care team')">
           <span class="arrow">›</span>
           <div class="card-icon">👥</div>
-          <div class="card-title">My Care Team</div>
-          <div class="card-sub">Dr. Sarah Ahmed<br>(Primary Physician)</div>
+          <div class="card-title" data-i18n="my_care_team">My Care Team</div>
+          <div class="card-sub">
+            <strong>Dr. Sarah Ahmed</strong><br>
+            (Primary Physician)
+          </div>
         </div>
 
         <!-- Health Snapshot -->
         <div class="dash-card c-health" onclick="showToast('Opening health snapshot')">
           <span class="arrow">›</span>
           <div class="card-icon">❤️</div>
-          <div class="card-title">My Health Snapshot</div>
-          <div class="card-sub">BP: 120/80 mmHg<br>HR: 72 bpm</div>
+          <div class="card-title" data-i18n="my_health">My Health Snapshot</div>
+          <div class="card-sub">
+            BP: 120/80 mmHg<br>
+            HR: 72 bpm <span style="color:#2B6CB0">📈</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Medications Tab -->
     <div id="tab-medications" class="sub-page">
-      <div class="page-title">Medications</div>
+      <div class="page-title" data-i18n="medications">Medications</div>
+      <div class="chart-card">
+        <h4 data-i18n="adherence_week">Weekly Adherence — Abu Dhabi Clinic</h4>
+        <div class="bar-row"><div class="bar-label">Mon</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#23A879"></div></div><div class="bar-val">100%</div></div>
+        <div class="bar-row"><div class="bar-label">Tue</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#23A879"></div></div><div class="bar-val">100%</div></div>
+        <div class="bar-row"><div class="bar-label">Wed</div><div class="bar-track"><div class="bar-fill" style="width:67%;background:#F39C12"></div></div><div class="bar-val">67%</div></div>
+        <div class="bar-row"><div class="bar-label">Thu</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#23A879"></div></div><div class="bar-val">100%</div></div>
+        <div class="bar-row"><div class="bar-label">Fri</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#23A879"></div></div><div class="bar-val">100%</div></div>
+        <div class="bar-row"><div class="bar-label">Sat</div><div class="bar-track"><div class="bar-fill" style="width:33%;background:#E74C3C"></div></div><div class="bar-val">33%</div></div>
+        <div class="bar-row"><div class="bar-label">Sun</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#23A879"></div></div><div class="bar-val">100%</div></div>
+        <div class="pie-legend"><span style="font-weight:700;color:#23A879">Week average: 85.7%</span></div>
+      </div>
       <div class="list-card">
         <div class="list-icon">💊</div>
         <div class="list-info">
           <h4>Furosemide 50 mg</h4>
-          <p>Once daily • Next: 8:00 AM</p>
+          <p data-i18n="med_furo_sub">Once daily • Next: 8:00 AM</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">💊</div>
         <div class="list-info">
           <h4>Metformin 500 mg</h4>
-          <p>Twice daily • After meals</p>
+          <p data-i18n="med_met_sub">Twice daily • After meals</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">💊</div>
         <div class="list-info">
           <h4>Atorvastatin 20 mg</h4>
-          <p>Once at night</p>
+          <p data-i18n="med_ator_sub">Once at night</p>
         </div>
       </div>
       <div class="list-card" style="border: 1.5px dashed #23A879; background: var(--green-light)">
         <div class="list-icon" style="background:white">+</div>
         <div class="list-info">
-          <h4 style="color:var(--green)">Request LIORA Drugs</h4>
-          <p>Smart personalized medication</p>
+          <h4 style="color:var(--green)" data-i18n="request_liora">Request LIORA Drugs</h4>
+          <p data-i18n="request_liora_sub">Smart personalized medication</p>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h4 data-i18n="refill_status">Refill Status — SEHA Pharmacy Network</h4>
+        <div class="stat-grid">
+          <div class="stat-box accent-green"><div class="sv">12</div><div class="sl" data-i18n="days_left">Days left</div></div>
+          <div class="stat-box accent-orange"><div class="sv">2</div><div class="sl" data-i18n="low_stock">Low stock</div></div>
         </div>
       </div>
     </div>
 
     <!-- Notifications Tab -->
     <div id="tab-notifications" class="sub-page">
-      <div class="page-title">Notifications</div>
+      <div class="page-title" data-i18n="notifications">Notifications</div>
       <div class="list-card">
         <div class="list-icon" style="background:#FFF4E6">🔔</div>
         <div class="list-info">
-          <h4>Medication Alert</h4>
-          <p>Furosemide dose due in 25 minutes</p>
+          <h4 data-i18n="notif_med_alert">Medication Alert</h4>
+          <p data-i18n="notif_med_alert_sub">Furosemide dose due in 25 minutes</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon" style="background:#E9F7F1">📅</div>
         <div class="list-info">
-          <h4>Appointment Reminder</h4>
-          <p>Dr. Ahmad – Sat 5:30 PM</p>
+          <h4 data-i18n="notif_appt">Appointment Reminder</h4>
+          <p data-i18n="notif_appt_sub">Dr. Ahmad – Sat 5:30 PM</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon" style="background:#FDECEC">⚠️</div>
         <div class="list-info">
-          <h4>Supply Running Low</h4>
-          <p>Metformin – 4 days remaining</p>
+          <h4 data-i18n="notif_supply">Supply Running Low</h4>
+          <p data-i18n="notif_supply_sub">Metformin – 4 days remaining</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">💬</div>
         <div class="list-info">
-          <h4>Message from Care Team</h4>
-          <p>Dr. Sarah: Please update your BP readings</p>
+          <h4 data-i18n="notif_msg">Message from Care Team</h4>
+          <p data-i18n="notif_msg_sub">Dr. Sarah: Please update your BP readings</p>
         </div>
       </div>
     </div>
 
     <!-- Authorized Persons Tab -->
     <div id="tab-authorized" class="sub-page">
-      <div class="page-title">Authorized Persons</div>
+      <div class="page-title" data-i18n="authorized_persons">Authorized Persons</div>
       <div class="list-card">
         <div class="list-icon">👨‍⚕️</div>
         <div class="list-info">
           <h4>Dr. Sarah Ahmed</h4>
-          <p>Primary Physician • Full access</p>
+          <p data-i18n="auth_sarah_sub">Primary Physician • Full access</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">👨‍⚕️</div>
         <div class="list-info">
           <h4>Dr. Ahmad Khalil</h4>
-          <p>Cardiologist • Limited access</p>
+          <p data-i18n="auth_ahmad_sub">Cardiologist • Limited access</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">👩</div>
         <div class="list-info">
           <h4>Noura Al-Rashid</h4>
-          <p>Caregiver (Sister) • Medication + Appointments</p>
+          <p data-i18n="auth_noura_sub">Caregiver (Sister) • Medication + Appointments</p>
         </div>
       </div>
       <div class="list-card" style="border: 1.5px dashed #23A879; background: var(--green-light)">
         <div class="list-icon" style="background:white">+</div>
         <div class="list-info">
-          <h4 style="color:var(--green)">Add Authorized Person</h4>
-          <p>Grant access to family or staff</p>
+          <h4 style="color:var(--green)" data-i18n="add_authorized">Add Authorized Person</h4>
+          <p data-i18n="add_authorized_sub">Grant access to family or staff</p>
         </div>
       </div>
     </div>
 
     <!-- Medical Services Tab -->
     <div id="tab-services" class="sub-page">
-      <div class="page-title">Medical Services</div>
+      <div class="page-title" data-i18n="medical_services">Medical Services</div>
       <div class="list-card" onclick="showToast('Opening appointment booking')">
         <div class="list-icon">📅</div>
         <div class="list-info">
-          <h4>Book an Appointment</h4>
-          <p>Find doctors & available slots</p>
+          <h4 data-i18n="book_appt">Book an Appointment</h4>
+          <p data-i18n="book_appt_sub">Find doctors & available slots</p>
         </div>
       </div>
       <div class="list-card" onclick="showToast('Opening smart devices')">
         <div class="list-icon">⌚</div>
         <div class="list-info">
-          <h4>My Smart Devices</h4>
-          <p>Blood pressure, glucose, wearable</p>
+          <h4 data-i18n="smart_devices">My Smart Devices</h4>
+          <p data-i18n="smart_devices_sub">Blood pressure, glucose, wearable</p>
         </div>
       </div>
       <div class="list-card" onclick="showToast('Searching medical services')">
         <div class="list-icon">🔍</div>
         <div class="list-info">
-          <h4>Search Medical Services</h4>
-          <p>Labs, imaging, pharmacies near you</p>
+          <h4 data-i18n="search_services">Search Medical Services</h4>
+          <p data-i18n="search_services_sub">Labs, imaging, pharmacies near you</p>
         </div>
       </div>
       <div class="list-card">
         <div class="list-icon">📋</div>
         <div class="list-info">
-          <h4>Services History</h4>
-          <p>Past appointments & results</p>
+          <h4 data-i18n="services_history">Services History</h4>
+          <p data-i18n="services_history_sub">Past appointments & results</p>
         </div>
       </div>
     </div>
@@ -1245,23 +1656,23 @@
     <div class="bottom-nav">
       <button class="nav-item active" onclick="switchTab('overview', this)">
         <span class="nav-icon">🏠</span>
-        <span class="nav-label">Medical Record</span>
+        <span class="nav-label" data-i18n="medical_record">Medical Record</span>
       </button>
       <button class="nav-item" onclick="switchTab('medications', this)">
         <span class="nav-icon">💊</span>
-        <span class="nav-label">Medications</span>
+        <span class="nav-label" data-i18n="medications">Medications</span>
       </button>
       <button class="nav-item" onclick="switchTab('notifications', this)">
         <span class="nav-icon">🔔</span>
-        <span class="nav-label">Notifications</span>
+        <span class="nav-label" data-i18n="notifications">Notifications</span>
       </button>
       <button class="nav-item" onclick="switchTab('authorized', this)">
         <span class="nav-icon">👥</span>
-        <span class="nav-label">Authorized</span>
+        <span class="nav-label" data-i18n="authorized">Authorized</span>
       </button>
       <button class="nav-item" onclick="switchTab('services', this)">
         <span class="nav-icon">🏥</span>
-        <span class="nav-label">Services</span>
+        <span class="nav-label" data-i18n="services">Services</span>
       </button>
     </div>
   </div>
@@ -1271,18 +1682,23 @@
     <div class="patient-header">
       <div class="ph-top">
         <div class="ph-left">
-          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <button class="menu-btn" onclick="goBack()">←</button>
           <div class="brand">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
-              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
-              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
-            </svg>
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;flex-shrink:0">
+  <circle cx="20" cy="20" r="18" fill="#E8F4FD"/>
+  <path d="M20 8c-3.5 0-6.2 2.4-6.2 5.8 0 2.2 1.2 4.1 3 5.1v1.2c-4.2.9-7.3 3.8-7.3 7.4h2.4c0-2.6 2.5-4.6 5.6-4.6h4.8c3.1 0 5.6 2 5.6 4.6h2.4c0-3.6-3.1-6.5-7.3-7.4v-1.2c1.8-1 3-2.9 3-5.1C26.2 10.4 23.5 8 20 8z" fill="#1A5F9E"/>
+  <path d="M28 11c0 0 1.5-1.2 3.2-.3 1.2.6 1.5 2.1.8 3.2-.9 1.5-3.2 2.2-4.5 1.1-.6-.5-.7-1.3-.5-2 .3-1 .7-1.5 1-2z" fill="#23A879"/>
+  <path d="M29.2 12.2c.4.8.3 1.5-.2 2" stroke="#1A8F65" stroke-width="0.8" fill="none"/>
+</svg>
             <span>Noblepharma</span>
           </div>
         </div>
         <div class="ph-right">
-          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">2</span></button>
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">عر</button>
+          </div>
+        <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">2</span></button>
           <button class="icon-btn" style="background:var(--navy-2);color:white;font-weight:700;font-size:13px" onclick="showToast('Physician Profile')">DR</button>
         </div>
       </div>
@@ -1294,74 +1710,118 @@
     </div>
 
     <div id="phys-tab-overview" class="patient-body sub-page active">
+      <div class="kpi-row">
+        <div class="kpi-chip"><div class="k">48</div><div class="l" data-i18n="my_patients">My Patients</div></div>
+        <div class="kpi-chip"><div class="k">3</div><div class="l">Today</div></div>
+        <div class="kpi-chip"><div class="k">5</div><div class="l" data-i18n="requests">Requests</div></div>
+        <div class="kpi-chip"><div class="k">91%</div><div class="l">BP Control</div></div>
+      </div>
+      <div class="chart-card">
+        <h4 data-i18n="clinic_load">Clinic Load — Cleveland Clinic Abu Dhabi</h4>
+        <div class="bar-row"><div class="bar-label">08–10</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:#23A879"></div></div><div class="bar-val">2</div></div>
+        <div class="bar-row"><div class="bar-label">10–12</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:#F39C12"></div></div><div class="bar-val">4</div></div>
+        <div class="bar-row"><div class="bar-label">12–14</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:#23A879"></div></div><div class="bar-val">1</div></div>
+        <div class="bar-row"><div class="bar-label">14–16</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#2B6CB0"></div></div><div class="bar-val">3</div></div>
+        <div class="bar-row"><div class="bar-label">16–18</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#E74C3C"></div></div><div class="bar-val">5</div></div>
+      </div>
       <div class="cards-grid">
         <div class="dash-card c-appt" onclick="showToast('Appointments')">
           <span class="arrow">›</span>
           <div class="card-icon">📅</div>
-          <div class="card-title">Appointments</div>
-          <div class="card-sub">3 upcoming today<br>Next: 10:30 AM</div>
+          <div class="card-title" data-i18n="todays_schedule">Today's Schedule</div>
+          <div class="card-sub">
+            <strong>3 appointments</strong><br>
+            <span class="card-meta">Next: 10:30 AM • Lina A.</span>
+          </div>
         </div>
         <div class="dash-card c-remind" onclick="showToast('Requests')">
           <span class="arrow">›</span>
           <div class="card-icon">📩</div>
-          <div class="card-title">Requests</div>
-          <div class="card-sub">5 pending consultation requests</div>
+          <div class="card-title" data-i18n="consultation_requests">Consultation Requests</div>
+          <div class="card-sub">
+            <strong>5 pending</strong><br>
+            <span class="card-meta">2 require urgent review</span>
+          </div>
         </div>
         <div class="dash-card c-device" onclick="showToast('Notifications')">
           <span class="arrow">›</span>
           <div class="card-icon">🔔</div>
-          <div class="card-title">Notifications</div>
-          <div class="card-sub">2 new clinical alerts</div>
+          <div class="card-title" data-i18n="clinical_alerts">Clinical Alerts</div>
+          <div class="card-sub">
+            <strong>2 new alerts</strong><br>
+            <span class="card-meta">BP elevated • Lab ready</span>
+          </div>
         </div>
         <div class="dash-card c-health" onclick="showToast('Alerts')">
           <span class="arrow">›</span>
           <div class="card-icon">⚠️</div>
-          <div class="card-title">Alerts</div>
-          <div class="card-sub">1 urgent patient case</div>
+          <div class="card-title" data-i18n="urgent_cases">Urgent Cases</div>
+          <div class="card-sub">
+            <strong>1 priority case</strong><br>
+            <span class="card-meta">Requires immediate attention</span>
+          </div>
+        </div>
+        <div class="dash-card c-team" onclick="showToast('My Patients')">
+          <span class="arrow">›</span>
+          <div class="card-icon">👥</div>
+          <div class="card-title" data-i18n="my_patients">My Patients</div>
+          <div class="card-sub">
+            <strong>48 active</strong><br>
+            <span class="card-meta">3 new this week</span>
+          </div>
+        </div>
+        <div class="dash-card c-dose" onclick="showToast('Prescriptions')">
+          <span class="arrow">›</span>
+          <div class="card-icon">💊</div>
+          <div class="card-title" data-i18n="prescriptions">Prescriptions</div>
+          <div class="card-sub">
+            <strong>12 issued today</strong><br>
+            <span class="card-meta">4 awaiting pharmacy</span>
+          </div>
         </div>
       </div>
     </div>
 
     <div id="phys-tab-patients" class="sub-page">
-      <div class="page-title">My Patients</div>
-      <div class="list-card"><div class="list-icon">👩</div><div class="list-info"><h4>Lina Al-Rashid</h4><p>Hypertension • Last visit: 2 days ago</p></div></div>
-      <div class="list-card"><div class="list-icon">👨</div><div class="list-info"><h4>Omar Hassan</h4><p>Diabetes Type 2 • Active treatment</p></div></div>
-      <div class="list-card"><div class="list-icon">👩</div><div class="list-info"><h4>Sara Mahmoud</h4><p>Post-op follow-up</p></div></div>
+      <div class="page-title" data-i18n="my_patients">My Patients</div>
+      <div class="list-card"><div class="list-icon">👩</div><div class="list-info"><h4>Lina Al-Rashid</h4><p data-i18n="pt_lina_sub">Hypertension • Last visit: 2 days ago</p></div></div>
+      <div class="list-card"><div class="list-icon">👨</div><div class="list-info"><h4>Omar Hassan</h4><p data-i18n="pt_omar_sub">Diabetes Type 2 • Active treatment</p></div></div>
+      <div class="list-card"><div class="list-icon">👩</div><div class="list-info"><h4>Sara Mahmoud</h4><p data-i18n="pt_sara_sub">Post-op follow-up</p></div></div>
     </div>
 
     <div id="phys-tab-auth" class="sub-page">
-      <div class="page-title">Authorization</div>
-      <div class="list-card"><div class="list-icon">🔐</div><div class="list-info"><h4>Access Controls</h4><p>Manage patient data permissions</p></div></div>
-      <div class="list-card"><div class="list-icon">✅</div><div class="list-info"><h4>Medical Approvals</h4><p>3 pending approvals</p></div></div>
-      <div class="list-card"><div class="list-icon">🚨</div><div class="list-info"><h4>Emergency Permissions</h4><p>Quick access overrides</p></div></div>
+      <div class="page-title" data-i18n="authorization">Authorization</div>
+      <div class="list-card"><div class="list-icon">🔐</div><div class="list-info"><h4 data-i18n="access_controls">Access Controls</h4><p data-i18n="access_controls_sub">Manage patient data permissions</p></div></div>
+      <div class="list-card"><div class="list-icon">✅</div><div class="list-info"><h4 data-i18n="medical_approvals">Medical Approvals</h4><p data-i18n="medical_approvals_sub">3 pending approvals</p></div></div>
+      <div class="list-card"><div class="list-icon">🚨</div><div class="list-info"><h4 data-i18n="emergency_permissions">Emergency Permissions</h4><p data-i18n="emergency_permissions_sub">Quick access overrides</p></div></div>
     </div>
 
     <div id="phys-tab-notif" class="sub-page">
-      <div class="page-title">Notifications</div>
-      <div class="list-card"><div class="list-icon">🔔</div><div class="list-info"><h4>Patient Alert</h4><p>Lina Al-Rashid – BP elevated</p></div></div>
-      <div class="list-card"><div class="list-icon">💬</div><div class="list-info"><h4>Clinical Message</h4><p>Lab results ready for review</p></div></div>
+      <div class="page-title" data-i18n="notifications">Notifications</div>
+      <div class="list-card"><div class="list-icon">🔔</div><div class="list-info"><h4 data-i18n="patient_alert">Patient Alert</h4><p data-i18n="patient_alert_sub">Lina Al-Rashid – BP elevated</p></div></div>
+      <div class="list-card"><div class="list-icon">💬</div><div class="list-info"><h4 data-i18n="clinical_message">Clinical Message</h4><p data-i18n="clinical_message_sub">Lab results ready for review</p></div></div>
     </div>
 
     <div id="phys-tab-network" class="sub-page">
-      <div class="page-title">Medical Network</div>
-      <div class="list-card"><div class="list-icon">👥</div><div class="list-info"><h4>Caregivers Team</h4><p>Linked caregivers</p></div></div>
-      <div class="list-card"><div class="list-icon">👨‍⚕️</div><div class="list-info"><h4>Consulting Physicians</h4><p>8 colleagues</p></div></div>
-      <div class="list-card"><div class="list-icon">🏥</div><div class="list-info"><h4>Partner Centers</h4><p>Hospitals & clinics</p></div></div>
+      <div class="page-title" data-i18n="role_network">Medical Network</div>
+      <div class="list-card"><div class="list-icon">👥</div><div class="list-info"><h4 data-i18n="caregivers_team">Caregivers Team</h4><p data-i18n="caregivers_team_sub">Linked caregivers</p></div></div>
+      <div class="list-card"><div class="list-icon">👨‍⚕️</div><div class="list-info"><h4 data-i18n="consulting_physicians">Consulting Physicians</h4><p data-i18n="consulting_physicians_sub">8 colleagues</p></div></div>
+      <div class="list-card"><div class="list-icon">🏥</div><div class="list-info"><h4 data-i18n="partner_centers">Partner Centers</h4><p data-i18n="partner_centers_sub">Hospitals & clinics</p></div></div>
     </div>
 
     <div id="phys-tab-requests" class="sub-page">
-      <div class="page-title">Requests & Appointments</div>
-      <div class="list-card"><div class="list-icon">📩</div><div class="list-info"><h4>Consultation Requests</h4><p>5 waiting</p></div></div>
-      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4>Schedule Management</h4><p>Today's slots</p></div></div>
-      <div class="list-card"><div class="list-icon">🔄</div><div class="list-info"><h4>Reschedule / Cancel</h4><p>Manage bookings</p></div></div>
+      <div class="page-title" data-i18n="requests">Requests & Appointments</div>
+      <div class="list-card"><div class="list-icon">📩</div><div class="list-info"><h4 data-i18n="consultation_requests">Consultation Requests</h4><p data-i18n="consultation_waiting">5 waiting</p></div></div>
+      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4 data-i18n="schedule_mgmt">Schedule Management</h4><p data-i18n="todays_slots">Today's slots</p></div></div>
+      <div class="list-card"><div class="list-icon">🔄</div><div class="list-info"><h4 data-i18n="reschedule_cancel">Reschedule / Cancel</h4><p data-i18n="manage_bookings">Manage bookings</p></div></div>
     </div>
 
     <div class="bottom-nav">
-      <button class="nav-item active" onclick="switchPhysTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span></button>
-      <button class="nav-item" onclick="switchPhysTab('patients', this)"><span class="nav-icon">👥</span><span class="nav-label">My Patients</span></button>
-      <button class="nav-item" onclick="switchPhysTab('auth', this)"><span class="nav-icon">🔐</span><span class="nav-label">Authorization</span></button>
-      <button class="nav-item" onclick="switchPhysTab('network', this)"><span class="nav-icon">🔗</span><span class="nav-label">Network</span></button>
-      <button class="nav-item" onclick="switchPhysTab('requests', this)"><span class="nav-icon">📅</span><span class="nav-label">Requests</span></button>
+      <button class="nav-item active" onclick="switchPhysTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label" data-i18n="overview">Overview</span></button>
+      <button class="nav-item" onclick="switchPhysTab('patients', this)"><span class="nav-icon">👥</span><span class="nav-label" data-i18n="my_patients">My Patients</span></button>
+      <button class="nav-item" onclick="switchPhysTab('auth', this)"><span class="nav-icon">🔐</span><span class="nav-label" data-i18n="authorization">Authorization</span></button>
+      <button class="nav-item" onclick="switchPhysTab('network', this)"><span class="nav-icon">🔗</span><span class="nav-label" data-i18n="network">Network</span></button>
+      <button class="nav-item" onclick="switchPhysTab('requests', this)"><span class="nav-icon">📅</span><span class="nav-label" data-i18n="requests">Requests</span></button>
     </div>
   </div>
 
@@ -1370,18 +1830,23 @@
     <div class="patient-header">
       <div class="ph-top">
         <div class="ph-left">
-          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <button class="menu-btn" onclick="goBack()">←</button>
           <div class="brand">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
-              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
-              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
-            </svg>
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;flex-shrink:0">
+  <circle cx="20" cy="20" r="18" fill="#E8F4FD"/>
+  <path d="M20 8c-3.5 0-6.2 2.4-6.2 5.8 0 2.2 1.2 4.1 3 5.1v1.2c-4.2.9-7.3 3.8-7.3 7.4h2.4c0-2.6 2.5-4.6 5.6-4.6h4.8c3.1 0 5.6 2 5.6 4.6h2.4c0-3.6-3.1-6.5-7.3-7.4v-1.2c1.8-1 3-2.9 3-5.1C26.2 10.4 23.5 8 20 8z" fill="#1A5F9E"/>
+  <path d="M28 11c0 0 1.5-1.2 3.2-.3 1.2.6 1.5 2.1.8 3.2-.9 1.5-3.2 2.2-4.5 1.1-.6-.5-.7-1.3-.5-2 .3-1 .7-1.5 1-2z" fill="#23A879"/>
+  <path d="M29.2 12.2c.4.8.3 1.5-.2 2" stroke="#1A8F65" stroke-width="0.8" fill="none"/>
+</svg>
             <span>Noblepharma</span>
           </div>
         </div>
         <div class="ph-right">
-          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">4</span></button>
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">عر</button>
+          </div>
+        <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">4</span></button>
           <button class="icon-btn" style="background:#7C4DFF;color:white;font-weight:700;font-size:13px" onclick="showToast('Pharmacist Profile')">PH</button>
         </div>
       </div>
@@ -1393,71 +1858,114 @@
     </div>
 
     <div id="liora-tab-overview" class="patient-body sub-page active">
+      <div class="kpi-row">
+        <div class="kpi-chip"><div class="k">12</div><div class="l">LIORAs</div></div>
+        <div class="kpi-chip"><div class="k">8</div><div class="l">Pending Rx</div></div>
+        <div class="kpi-chip"><div class="k">3</div><div class="l">Refills</div></div>
+        <div class="kpi-chip"><div class="k">96%</div><div class="l">Uptime</div></div>
+      </div>
+      <div class="chart-card">
+        <h4 data-i18n="liora_stock">Inventory — Abu Dhabi Hub</h4>
+        <div class="bar-row"><div class="bar-label">Furosemide</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#E74C3C"></div></div><div class="bar-val">28%</div></div>
+        <div class="bar-row"><div class="bar-label">Metformin</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#23A879"></div></div><div class="bar-val">72%</div></div>
+        <div class="bar-row"><div class="bar-label">Atorvastatin</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#F39C12"></div></div><div class="bar-val">55%</div></div>
+        <div class="bar-row"><div class="bar-label">Cartridges</div><div class="bar-track"><div class="bar-fill" style="width:41%;background:#2B6CB0"></div></div><div class="bar-val">41%</div></div>
+      </div>
       <div class="cards-grid">
         <div class="dash-card c-dose" onclick="showToast('My LIORAs')">
           <span class="arrow">›</span>
           <div class="card-icon">💊</div>
-          <div class="card-title">My LIORAs</div>
-          <div class="card-sub">12 active devices<br>3 need refill</div>
+          <div class="card-title" data-i18n="my_lioras">My LIORAs</div>
+          <div class="card-sub">
+            <strong>12 active devices</strong><br>
+            <span class="card-meta">3 need refill soon</span>
+          </div>
         </div>
         <div class="dash-card c-appt" onclick="showToast('Prescription Requests')">
           <span class="arrow">›</span>
           <div class="card-icon">📋</div>
-          <div class="card-title">Prescription Requests</div>
-          <div class="card-sub">8 pending verification</div>
+          <div class="card-title" data-i18n="prescription_requests">Prescription Requests</div>
+          <div class="card-sub">
+            <strong>8 pending</strong><br>
+            <span class="card-meta">Verification required</span>
+          </div>
         </div>
         <div class="dash-card c-remind" onclick="showToast('Notifications')">
           <span class="arrow">›</span>
           <div class="card-icon">🔔</div>
-          <div class="card-title">Notifications</div>
-          <div class="card-sub">Inventory & system alerts</div>
+          <div class="card-title" data-i18n="inventory_alerts">Inventory Alerts</div>
+          <div class="card-sub">
+            <strong>Furosemide low</strong><br>
+            <span class="card-meta">Stock below threshold</span>
+          </div>
         </div>
         <div class="dash-card c-health" onclick="showToast('Alerts')">
           <span class="arrow">›</span>
           <div class="card-icon">⚠️</div>
-          <div class="card-title">Alerts</div>
-          <div class="card-sub">2 urgent refill notices</div>
+          <div class="card-title" data-i18n="urgent_refills">Urgent Refills</div>
+          <div class="card-sub">
+            <strong>2 priority</strong><br>
+            <span class="card-meta">Patient devices waiting</span>
+          </div>
+        </div>
+        <div class="dash-card c-team" onclick="showToast('Dispensing')">
+          <span class="arrow">›</span>
+          <div class="card-icon">✅</div>
+          <div class="card-title" data-i18n="dispensing_queue">Dispensing Queue</div>
+          <div class="card-sub">
+            <strong>5 ready</strong><br>
+            <span class="card-meta">Awaiting confirmation</span>
+          </div>
+        </div>
+        <div class="dash-card c-device" onclick="showToast('Firmware')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🔄</div>
+          <div class="card-title" data-i18n="device_updates">Device Updates</div>
+          <div class="card-sub">
+            <strong>Firmware available</strong><br>
+            <span class="card-meta">4 devices ready to update</span>
+          </div>
         </div>
       </div>
     </div>
 
     <div id="liora-tab-lioras" class="sub-page">
-      <div class="page-title">My LIORAs</div>
-      <div class="list-card"><div class="list-icon">💊</div><div class="list-info"><h4>LIORA Device #A-204</h4><p>Status: Active • Cartridge 68%</p></div></div>
-      <div class="list-card"><div class="list-icon">💊</div><div class="list-info"><h4>LIORA Device #B-117</h4><p>Status: Needs refill</p></div></div>
-      <div class="list-card"><div class="list-icon">📦</div><div class="list-info"><h4>Inventory Management</h4><p>Drug tracking & stock levels</p></div></div>
+      <div class="page-title" data-i18n="my_lioras">My LIORAs</div>
+      <div class="list-card"><div class="list-icon">💊</div><div class="list-info"><h4>LIORA Device #A-204</h4><p data-i18n="liora_a_sub">Status: Active • Cartridge 68%</p></div></div>
+      <div class="list-card"><div class="list-icon">💊</div><div class="list-info"><h4>LIORA Device #B-117</h4><p data-i18n="liora_b_sub">Status: Needs refill</p></div></div>
+      <div class="list-card"><div class="list-icon">📦</div><div class="list-info"><h4 data-i18n="inventory_mgmt">Inventory Management</h4><p data-i18n="inventory_mgmt_sub">Drug tracking & stock levels</p></div></div>
     </div>
 
     <div id="liora-tab-auth" class="sub-page">
-      <div class="page-title">Authorization</div>
-      <div class="list-card"><div class="list-icon">✅</div><div class="list-info"><h4>Dispensing Approvals</h4><p>5 waiting verification</p></div></div>
-      <div class="list-card"><div class="list-icon">🔐</div><div class="list-info"><h4>Security Verifications</h4><p>Prescription validation</p></div></div>
+      <div class="page-title" data-i18n="authorization">Authorization</div>
+      <div class="list-card"><div class="list-icon">✅</div><div class="list-info"><h4 data-i18n="dispensing_approvals">Dispensing Approvals</h4><p data-i18n="dispensing_approvals_sub">5 waiting verification</p></div></div>
+      <div class="list-card"><div class="list-icon">🔐</div><div class="list-info"><h4 data-i18n="security_verifications">Security Verifications</h4><p data-i18n="security_verifications_sub">Prescription validation</p></div></div>
     </div>
 
     <div id="liora-tab-notif" class="sub-page">
-      <div class="page-title">Notifications</div>
-      <div class="list-card"><div class="list-icon">🔔</div><div class="list-info"><h4>Inventory Alert</h4><p>Furosemide stock low</p></div></div>
-      <div class="list-card"><div class="list-icon">🔄</div><div class="list-info"><h4>System Update</h4><p>New LIORA firmware available</p></div></div>
+      <div class="page-title" data-i18n="notifications">Notifications</div>
+      <div class="list-card"><div class="list-icon">🔔</div><div class="list-info"><h4 data-i18n="inventory_alert">Inventory Alert</h4><p data-i18n="inventory_alert_sub">Furosemide stock low</p></div></div>
+      <div class="list-card"><div class="list-icon">🔄</div><div class="list-info"><h4 data-i18n="system_update">System Update</h4><p data-i18n="system_update_sub">New LIORA firmware available</p></div></div>
     </div>
 
     <div id="liora-tab-network" class="sub-page">
-      <div class="page-title">Medical Network</div>
-      <div class="list-card"><div class="list-icon">👨‍⚕️</div><div class="list-info"><h4>Prescribing Physicians</h4><p>Linked doctors</p></div></div>
-      <div class="list-card"><div class="list-icon">🏥</div><div class="list-info"><h4>Healthcare Facilities</h4><p>Partner clinics & hospitals</p></div></div>
+      <div class="page-title" data-i18n="role_network">Medical Network</div>
+      <div class="list-card"><div class="list-icon">👨‍⚕️</div><div class="list-info"><h4 data-i18n="prescribing_physicians">Prescribing Physicians</h4><p data-i18n="prescribing_physicians_sub">Linked doctors</p></div></div>
+      <div class="list-card"><div class="list-icon">🏥</div><div class="list-info"><h4 data-i18n="healthcare_facilities">Healthcare Facilities</h4><p data-i18n="healthcare_facilities_sub">Partner clinics & hospitals</p></div></div>
     </div>
 
     <div id="liora-tab-requests" class="sub-page">
-      <div class="page-title">Requests</div>
-      <div class="list-card"><div class="list-icon">📋</div><div class="list-info"><h4>Medication Orders</h4><p>12 new requests</p></div></div>
-      <div class="list-card"><div class="list-icon">🔄</div><div class="list-info"><h4>Refill Processing</h4><p>Status tracking</p></div></div>
+      <div class="page-title" data-i18n="requests">Requests</div>
+      <div class="list-card"><div class="list-icon">📋</div><div class="list-info"><h4 data-i18n="medication_orders">Medication Orders</h4><p data-i18n="medication_orders_sub">12 new requests</p></div></div>
+      <div class="list-card"><div class="list-icon">🔄</div><div class="list-info"><h4 data-i18n="refill_processing">Refill Processing</h4><p data-i18n="refill_processing_sub">Status tracking</p></div></div>
     </div>
 
     <div class="bottom-nav">
-      <button class="nav-item active" onclick="switchLioraTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span></button>
-      <button class="nav-item" onclick="switchLioraTab('lioras', this)"><span class="nav-icon">💊</span><span class="nav-label">My LIORAs</span></button>
-      <button class="nav-item" onclick="switchLioraTab('auth', this)"><span class="nav-icon">🔐</span><span class="nav-label">Authorization</span></button>
-      <button class="nav-item" onclick="switchLioraTab('network', this)"><span class="nav-icon">🔗</span><span class="nav-label">Network</span></button>
-      <button class="nav-item" onclick="switchLioraTab('requests', this)"><span class="nav-icon">📋</span><span class="nav-label">Requests</span></button>
+      <button class="nav-item active" onclick="switchLioraTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label" data-i18n="overview">Overview</span></button>
+      <button class="nav-item" onclick="switchLioraTab('lioras', this)"><span class="nav-icon">💊</span><span class="nav-label" data-i18n="my_lioras">My LIORAs</span></button>
+      <button class="nav-item" onclick="switchLioraTab('auth', this)"><span class="nav-icon">🔐</span><span class="nav-label" data-i18n="authorization">Authorization</span></button>
+      <button class="nav-item" onclick="switchLioraTab('network', this)"><span class="nav-icon">🔗</span><span class="nav-label" data-i18n="network">Network</span></button>
+      <button class="nav-item" onclick="switchLioraTab('requests', this)"><span class="nav-icon">📋</span><span class="nav-label" data-i18n="requests">Requests</span></button>
     </div>
   </div>
 
@@ -1466,18 +1974,23 @@
     <div class="patient-header">
       <div class="ph-top">
         <div class="ph-left">
-          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <button class="menu-btn" onclick="goBack()">←</button>
           <div class="brand">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
-              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
-              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
-            </svg>
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;flex-shrink:0">
+  <circle cx="20" cy="20" r="18" fill="#E8F4FD"/>
+  <path d="M20 8c-3.5 0-6.2 2.4-6.2 5.8 0 2.2 1.2 4.1 3 5.1v1.2c-4.2.9-7.3 3.8-7.3 7.4h2.4c0-2.6 2.5-4.6 5.6-4.6h4.8c3.1 0 5.6 2 5.6 4.6h2.4c0-3.6-3.1-6.5-7.3-7.4v-1.2c1.8-1 3-2.9 3-5.1C26.2 10.4 23.5 8 20 8z" fill="#1A5F9E"/>
+  <path d="M28 11c0 0 1.5-1.2 3.2-.3 1.2.6 1.5 2.1.8 3.2-.9 1.5-3.2 2.2-4.5 1.1-.6-.5-.7-1.3-.5-2 .3-1 .7-1.5 1-2z" fill="#23A879"/>
+  <path d="M29.2 12.2c.4.8.3 1.5-.2 2" stroke="#1A8F65" stroke-width="0.8" fill="none"/>
+</svg>
             <span>Noblepharma</span>
           </div>
         </div>
         <div class="ph-right">
-          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">1</span></button>
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">عر</button>
+          </div>
+        <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">1</span></button>
           <button class="icon-btn" style="background:#F39C12;color:white;font-weight:700;font-size:13px" onclick="showToast('Caregiver Profile')">CG</button>
         </div>
       </div>
@@ -1489,73 +2002,115 @@
     </div>
 
     <div id="care-tab-overview" class="patient-body sub-page active">
+      <div class="kpi-row">
+        <div class="kpi-chip"><div class="k">2</div><div class="l" data-i18n="hosts">Hosts</div></div>
+        <div class="kpi-chip"><div class="k">3</div><div class="l" data-i18n="my_tasks">Tasks</div></div>
+        <div class="kpi-chip"><div class="k">1</div><div class="l">Alert</div></div>
+        <div class="kpi-chip"><div class="k">100%</div><div class="l">Doses done</div></div>
+      </div>
+      <div class="chart-card">
+        <h4 data-i18n="care_week">Care Tasks This Week</h4>
+        <div class="bar-row"><div class="bar-label">Meds</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:#23A879"></div></div><div class="bar-val">18/20</div></div>
+        <div class="bar-row"><div class="bar-label">Appts</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#2B6CB0"></div></div><div class="bar-val">2/2</div></div>
+        <div class="bar-row"><div class="bar-label">Vitals</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:#F39C12"></div></div><div class="bar-val">6/8</div></div>
+      </div>
       <div class="cards-grid">
         <div class="dash-card c-team" onclick="showToast('My Hosts')">
           <span class="arrow">›</span>
           <div class="card-icon">👥</div>
-          <div class="card-title">My Hosts</div>
-          <div class="card-sub">2 care recipients<br>Lina & Omar</div>
+          <div class="card-title" data-i18n="my_hosts">My Hosts</div>
+          <div class="card-sub">
+            <strong>Lina & Omar</strong><br>
+            <span class="card-meta">2 care recipients</span>
+          </div>
         </div>
         <div class="dash-card c-remind" onclick="showToast('My Tasks')">
           <span class="arrow">›</span>
           <div class="card-icon">✅</div>
-          <div class="card-title">My Tasks</div>
-          <div class="card-sub">3 tasks due today</div>
+          <div class="card-title" data-i18n="my_tasks">My Tasks</div>
+          <div class="card-sub">
+            <strong>3 due today</strong><br>
+            <span class="card-meta">Next: 8:00 AM dose</span>
+          </div>
         </div>
         <div class="dash-card c-device" onclick="showToast('Notifications')">
           <span class="arrow">›</span>
           <div class="card-icon">🔔</div>
           <div class="card-title">Notifications</div>
-          <div class="card-sub">Task & schedule updates</div>
+          <div class="card-sub">
+            <strong>2 updates</strong><br>
+            <span class="card-meta">Schedule & reminders</span>
+          </div>
         </div>
         <div class="dash-card c-health" onclick="showToast('Alerts')">
           <span class="arrow">›</span>
           <div class="card-icon">⚠️</div>
-          <div class="card-title">Alerts</div>
-          <div class="card-sub">1 care alert</div>
+          <div class="card-title" data-i18n="care_alerts">Care Alerts</div>
+          <div class="card-sub">
+            <strong>1 active alert</strong><br>
+            <span class="card-meta">Requires your attention</span>
+          </div>
+        </div>
+        <div class="dash-card c-appt" onclick="showToast('Schedule')">
+          <span class="arrow">›</span>
+          <div class="card-icon">📅</div>
+          <div class="card-title" data-i18n="todays_schedule">Today's Schedule</div>
+          <div class="card-sub">
+            <strong>4 care activities</strong><br>
+            <span class="card-meta">Lina 8AM • Omar 10AM</span>
+          </div>
+        </div>
+        <div class="dash-card c-dose" onclick="showToast('Medications')">
+          <span class="arrow">›</span>
+          <div class="card-icon">💊</div>
+          <div class="card-title">Medications</div>
+          <div class="card-sub">
+            <strong>Next dose soon</strong><br>
+            <span class="card-meta">Lina – Furosemide 50mg</span>
+          </div>
         </div>
       </div>
     </div>
 
     <div id="care-tab-hosts" class="sub-page">
-      <div class="page-title">Hosts</div>
-      <div class="list-card"><div class="list-icon">👩</div><div class="list-info"><h4>Lina Al-Rashid</h4><p>Sister • Medications + Appointments</p></div></div>
-      <div class="list-card"><div class="list-icon">👴</div><div class="list-info"><h4>Omar Al-Rashid</h4><p>Father • Full care support</p></div></div>
-      <div class="list-card"><div class="list-icon">📊</div><div class="list-info"><h4>Daily Requirements</h4><p>Health tracking & care plans</p></div></div>
+      <div class="page-title" data-i18n="hosts">Hosts</div>
+      <div class="list-card"><div class="list-icon">👩</div><div class="list-info"><h4>Lina Al-Rashid</h4><p data-i18n="host_lina_sub">Sister • Medications + Appointments</p></div></div>
+      <div class="list-card"><div class="list-icon">👴</div><div class="list-info"><h4>Omar Al-Rashid</h4><p data-i18n="host_omar_sub">Father • Full care support</p></div></div>
+      <div class="list-card"><div class="list-icon">📊</div><div class="list-info"><h4 data-i18n="daily_requirements">Daily Requirements</h4><p data-i18n="daily_requirements_sub">Health tracking & care plans</p></div></div>
     </div>
 
     <div id="care-tab-auth" class="sub-page">
-      <div class="page-title">Authorization</div>
-      <div class="list-card"><div class="list-icon">🔐</div><div class="list-info"><h4>Access Permissions</h4><p>What you can view & do</p></div></div>
-      <div class="list-card"><div class="list-icon">✅</div><div class="list-info"><h4>Delegated Authorities</h4><p>Medical approvals granted</p></div></div>
+      <div class="page-title" data-i18n="authorization">Authorization</div>
+      <div class="list-card"><div class="list-icon">🔐</div><div class="list-info"><h4 data-i18n="access_permissions">Access Permissions</h4><p data-i18n="access_permissions_sub">What you can view & do</p></div></div>
+      <div class="list-card"><div class="list-icon">✅</div><div class="list-info"><h4 data-i18n="delegated_authorities">Delegated Authorities</h4><p data-i18n="delegated_authorities_sub">Medical approvals granted</p></div></div>
     </div>
 
     <div id="care-tab-notif" class="sub-page">
-      <div class="page-title">Notifications</div>
-      <div class="list-card"><div class="list-icon">⏰</div><div class="list-info"><h4>Task Reminder</h4><p>Lina – 8:00 AM dose</p></div></div>
-      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4>Schedule Update</h4><p>Appointment moved to 5:30 PM</p></div></div>
+      <div class="page-title" data-i18n="notifications">Notifications</div>
+      <div class="list-card"><div class="list-icon">⏰</div><div class="list-info"><h4 data-i18n="task_reminder">Task Reminder</h4><p data-i18n="task_reminder_sub">Lina – 8:00 AM dose</p></div></div>
+      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4 data-i18n="schedule_update">Schedule Update</h4><p data-i18n="schedule_update_sub">Appointment moved to 5:30 PM</p></div></div>
     </div>
 
     <div id="care-tab-requests" class="sub-page">
-      <div class="page-title">Requests</div>
-      <div class="list-card"><div class="list-icon">🆘</div><div class="list-info"><h4>Assistance Requests</h4><p>Request help from care team</p></div></div>
-      <div class="list-card"><div class="list-icon">📦</div><div class="list-info"><h4>Supply Reorders</h4><p>Medication & supplies</p></div></div>
-      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4>Schedule Adjustments</h4><p>Change care times</p></div></div>
+      <div class="page-title" data-i18n="requests">Requests</div>
+      <div class="list-card"><div class="list-icon">🆘</div><div class="list-info"><h4 data-i18n="assistance_requests">Assistance Requests</h4><p data-i18n="assistance_requests_sub">Request help from care team</p></div></div>
+      <div class="list-card"><div class="list-icon">📦</div><div class="list-info"><h4 data-i18n="supply_reorders">Supply Reorders</h4><p data-i18n="supply_reorders_sub">Medication & supplies</p></div></div>
+      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4 data-i18n="schedule_adjustments">Schedule Adjustments</h4><p data-i18n="schedule_adjustments_sub">Change care times</p></div></div>
     </div>
 
     <div id="care-tab-network" class="sub-page">
-      <div class="page-title">Medical Network</div>
-      <div class="list-card"><div class="list-icon">👨‍⚕️</div><div class="list-info"><h4>Attending Physicians</h4><p>Dr. Sarah Ahmed</p></div></div>
-      <div class="list-card"><div class="list-icon">🏥</div><div class="list-info"><h4>Healthcare Providers</h4><p>Linked facilities</p></div></div>
-      <div class="list-card"><div class="list-icon">🚨</div><div class="list-info"><h4>Emergency Contacts</h4><p>Quick access numbers</p></div></div>
+      <div class="page-title" data-i18n="role_network">Medical Network</div>
+      <div class="list-card"><div class="list-icon">👨‍⚕️</div><div class="list-info"><h4 data-i18n="attending_physicians">Attending Physicians</h4><p>Dr. Sarah Ahmed</p></div></div>
+      <div class="list-card"><div class="list-icon">🏥</div><div class="list-info"><h4 data-i18n="healthcare_providers">Healthcare Providers</h4><p data-i18n="linked_facilities">Linked facilities</p></div></div>
+      <div class="list-card"><div class="list-icon">🚨</div><div class="list-info"><h4 data-i18n="emergency_contacts">Emergency Contacts</h4><p data-i18n="emergency_contacts_sub">Quick access numbers</p></div></div>
     </div>
 
     <div class="bottom-nav">
-      <button class="nav-item active" onclick="switchCareTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span></button>
-      <button class="nav-item" onclick="switchCareTab('hosts', this)"><span class="nav-icon">👥</span><span class="nav-label">Hosts</span></button>
-      <button class="nav-item" onclick="switchCareTab('auth', this)"><span class="nav-icon">🔐</span><span class="nav-label">Authorization</span></button>
-      <button class="nav-item" onclick="switchCareTab('requests', this)"><span class="nav-icon">📩</span><span class="nav-label">Requests</span></button>
-      <button class="nav-item" onclick="switchCareTab('network', this)"><span class="nav-icon">🔗</span><span class="nav-label">Network</span></button>
+      <button class="nav-item active" onclick="switchCareTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label" data-i18n="overview">Overview</span></button>
+      <button class="nav-item" onclick="switchCareTab('hosts', this)"><span class="nav-icon">👥</span><span class="nav-label" data-i18n="hosts">Hosts</span></button>
+      <button class="nav-item" onclick="switchCareTab('auth', this)"><span class="nav-icon">🔐</span><span class="nav-label" data-i18n="authorization">Authorization</span></button>
+      <button class="nav-item" onclick="switchCareTab('requests', this)"><span class="nav-icon">📩</span><span class="nav-label" data-i18n="requests">Requests</span></button>
+      <button class="nav-item" onclick="switchCareTab('network', this)"><span class="nav-icon">🔗</span><span class="nav-label" data-i18n="network">Network</span></button>
     </div>
   </div>
 
@@ -1564,18 +2119,23 @@
     <div class="patient-header">
       <div class="ph-top">
         <div class="ph-left">
-          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <button class="menu-btn" onclick="goBack()">←</button>
           <div class="brand">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
-              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
-              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
-            </svg>
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;flex-shrink:0">
+  <circle cx="20" cy="20" r="18" fill="#E8F4FD"/>
+  <path d="M20 8c-3.5 0-6.2 2.4-6.2 5.8 0 2.2 1.2 4.1 3 5.1v1.2c-4.2.9-7.3 3.8-7.3 7.4h2.4c0-2.6 2.5-4.6 5.6-4.6h4.8c3.1 0 5.6 2 5.6 4.6h2.4c0-3.6-3.1-6.5-7.3-7.4v-1.2c1.8-1 3-2.9 3-5.1C26.2 10.4 23.5 8 20 8z" fill="#1A5F9E"/>
+  <path d="M28 11c0 0 1.5-1.2 3.2-.3 1.2.6 1.5 2.1.8 3.2-.9 1.5-3.2 2.2-4.5 1.1-.6-.5-.7-1.3-.5-2 .3-1 .7-1.5 1-2z" fill="#23A879"/>
+  <path d="M29.2 12.2c.4.8.3 1.5-.2 2" stroke="#1A8F65" stroke-width="0.8" fill="none"/>
+</svg>
             <span>Noblepharma</span>
           </div>
         </div>
         <div class="ph-right">
-          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬</button>
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">عر</button>
+          </div>
+        <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬</button>
           <button class="icon-btn" style="background:#16A085;color:white;font-weight:700;font-size:13px" onclick="showToast('Network Profile')">MN</button>
         </div>
       </div>
@@ -1587,17 +2147,62 @@
     </div>
 
     <div class="patient-body" style="padding-bottom:30px">
-      <div class="page-title" style="margin-bottom:14px">Healthcare Providers & Facilities</div>
+      <div class="page-title" style="margin-bottom:14px" data-i18n="providers_facilities">Healthcare Providers & Facilities</div>
       <div class="cards-grid">
-        <div class="dash-card c-team" onclick="showToast('Hospitals')"><div class="card-icon">🏥</div><div class="card-title">Hospitals & Medical Centers</div><div class="card-sub">Inpatient & outpatient care</div></div>
-        <div class="dash-card c-dose" onclick="showToast('Laboratories')"><div class="card-icon">🧪</div><div class="card-title">Medical Laboratories</div><div class="card-sub">Blood tests & pathology</div></div>
-        <div class="dash-card c-appt" onclick="showToast('Radiology')"><div class="card-icon">📷</div><div class="card-title">Radiology & Imaging</div><div class="card-sub">X-Ray, MRI, CT, Ultrasound</div></div>
-        <div class="dash-card c-remind" onclick="showToast('Physiotherapy')"><div class="card-icon">🏃</div><div class="card-title">Physiotherapy & Rehab</div><div class="card-sub">Physical therapy services</div></div>
-        <div class="dash-card c-device" onclick="showToast('Endoscopy')"><div class="card-icon">🔬</div><div class="card-title">Endoscopy & Biopsy</div><div class="card-sub">Specialized diagnostics</div></div>
-        <div class="dash-card c-health" onclick="showToast('Dental')"><div class="card-icon">🦷</div><div class="card-title">Dental Clinics</div><div class="card-sub">Oral health & orthodontics</div></div>
-        <div class="dash-card" style="background:#E8F8F5" onclick="showToast('Dialysis')"><div class="card-icon">💧</div><div class="card-title">Dialysis Centers</div><div class="card-sub">Renal care & hemodialysis</div></div>
-        <div class="dash-card" style="background:#FDECEC" onclick="showToast('Blood Banks')"><div class="card-icon">🩸</div><div class="card-title">Blood Banks</div><div class="card-sub">Donation & transfusion</div></div>
-        <div class="dash-card" style="background:#F0EBFF" onclick="showToast('Equipment')"><div class="card-icon">🛠️</div><div class="card-title">Medical Equipment</div><div class="card-sub">Devices & supplies</div></div>
+        <div class="dash-card c-team" onclick="showToast('Hospitals')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🏥</div>
+          <div class="card-title">Hospitals & Centers</div>
+          <div class="card-sub">Inpatient & outpatient care</div>
+        </div>
+        <div class="dash-card c-dose" onclick="showToast('Laboratories')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🧪</div>
+          <div class="card-title">Medical Laboratories</div>
+          <div class="card-sub">Blood tests & pathology</div>
+        </div>
+        <div class="dash-card c-appt" onclick="showToast('Radiology')">
+          <span class="arrow">›</span>
+          <div class="card-icon">📷</div>
+          <div class="card-title">Radiology & Imaging</div>
+          <div class="card-sub">X-Ray, MRI, CT, Ultrasound</div>
+        </div>
+        <div class="dash-card c-remind" onclick="showToast('Physiotherapy')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🏃</div>
+          <div class="card-title">Physiotherapy & Rehab</div>
+          <div class="card-sub">Physical therapy services</div>
+        </div>
+        <div class="dash-card c-device" onclick="showToast('Endoscopy')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🔬</div>
+          <div class="card-title">Endoscopy & Biopsy</div>
+          <div class="card-sub">Specialized diagnostics</div>
+        </div>
+        <div class="dash-card c-health" onclick="showToast('Dental')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🦷</div>
+          <div class="card-title">Dental Clinics</div>
+          <div class="card-sub">Oral health & orthodontics</div>
+        </div>
+        <div class="dash-card" style="background:#E8F8F5" onclick="showToast('Dialysis')">
+          <span class="arrow">›</span>
+          <div class="card-icon">💧</div>
+          <div class="card-title">Dialysis Centers</div>
+          <div class="card-sub">Renal care & hemodialysis</div>
+        </div>
+        <div class="dash-card" style="background:#FDECEC" onclick="showToast('Blood Banks')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🩸</div>
+          <div class="card-title">Blood Banks</div>
+          <div class="card-sub">Donation & transfusion</div>
+        </div>
+        <div class="dash-card" style="background:#F0EBFF" onclick="showToast('Equipment')">
+          <span class="arrow">›</span>
+          <div class="card-icon">🛠️</div>
+          <div class="card-title">Medical Equipment</div>
+          <div class="card-sub">Devices & supplies</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1607,18 +2212,23 @@
     <div class="patient-header">
       <div class="ph-top">
         <div class="ph-left">
-          <button class="menu-btn" onclick="showScreen('portal-screen')">☰</button>
+          <button class="menu-btn" onclick="goBack()">←</button>
           <div class="brand">
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 8 L58 20 L58 44 L40 56 L22 44 L22 20 Z" stroke="#23A879" stroke-width="5" fill="none"/>
-              <path d="M40 20 L52 28 L52 40 L40 48 L28 40 L28 28 Z" stroke="#23A879" stroke-width="4" fill="none"/>
-              <path d="M40 32 L46 36 L40 40 L34 36 Z" fill="#23A879"/>
-            </svg>
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;flex-shrink:0">
+  <circle cx="20" cy="20" r="18" fill="#E8F4FD"/>
+  <path d="M20 8c-3.5 0-6.2 2.4-6.2 5.8 0 2.2 1.2 4.1 3 5.1v1.2c-4.2.9-7.3 3.8-7.3 7.4h2.4c0-2.6 2.5-4.6 5.6-4.6h4.8c3.1 0 5.6 2 5.6 4.6h2.4c0-3.6-3.1-6.5-7.3-7.4v-1.2c1.8-1 3-2.9 3-5.1C26.2 10.4 23.5 8 20 8z" fill="#1A5F9E"/>
+  <path d="M28 11c0 0 1.5-1.2 3.2-.3 1.2.6 1.5 2.1.8 3.2-.9 1.5-3.2 2.2-4.5 1.1-.6-.5-.7-1.3-.5-2 .3-1 .7-1.5 1-2z" fill="#23A879"/>
+  <path d="M29.2 12.2c.4.8.3 1.5-.2 2" stroke="#1A8F65" stroke-width="0.8" fill="none"/>
+</svg>
             <span>Noblepharma</span>
           </div>
         </div>
         <div class="ph-right">
-          <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">3</span></button>
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">عر</button>
+          </div>
+        <button class="icon-btn notif-btn" onclick="showToast('Messages')">💬<span class="badge">3</span></button>
           <button class="icon-btn" style="background:#6C5CE7;color:white;font-weight:700;font-size:13px" onclick="showToast('Authority Profile')">HA</button>
         </div>
       </div>
@@ -1630,50 +2240,239 @@
     </div>
 
     <div id="auth-tab-overview" class="patient-body sub-page active">
+      <div class="kpi-row">
+        <div class="kpi-chip"><div class="k">3.85M</div><div class="l" data-i18n="kpi_ad_pop">Abu Dhabi Pop.</div></div>
+        <div class="kpi-chip"><div class="k">94.2%</div><div class="l" data-i18n="kpi_vaccination">Vaccination</div></div>
+        <div class="kpi-chip"><div class="k">87%</div><div class="l" data-i18n="kpi_adherence">Adherence</div></div>
+        <div class="kpi-chip"><div class="k">12</div><div class="l" data-i18n="kpi_risk">Risk Programs</div></div>
+      </div>
       <div class="cards-grid">
-        <div class="dash-card c-team" onclick="showToast('Population Overview')"><div class="card-icon">👥</div><div class="card-title">Population Overview</div><div class="card-sub">2.4M covered</div></div>
-        <div class="dash-card c-appt" onclick="showToast('Precision Prevention')"><div class="card-icon">🛡️</div><div class="card-title">Precision Prevention</div><div class="card-sub">Risk programs</div></div>
-        <div class="dash-card c-remind" onclick="showToast('Disease Surveillance')"><div class="card-icon">📊</div><div class="card-title">Disease Surveillance</div><div class="card-sub">Active monitoring</div></div>
-        <div class="dash-card c-dose" onclick="showToast('Treatment Adherence')"><div class="card-icon">💊</div><div class="card-title">Treatment Adherence</div><div class="card-sub">Compliance rates</div></div>
-        <div class="dash-card c-device" onclick="showToast('Population Screening')"><div class="card-icon">🔍</div><div class="card-title">Population Screening</div><div class="card-sub">7 active programs</div></div>
-        <div class="dash-card c-health" onclick="showToast('Vaccination Programs')"><div class="card-icon">💉</div><div class="card-title">Vaccination Programs</div><div class="card-sub">94% coverage</div></div>
-        <div class="dash-card" style="background:#FDECEC;grid-column:span 2" onclick="showToast('Public Health Alerts')"><div class="card-icon">🚨</div><div class="card-title">Public Health Alerts</div><div class="card-sub">Current alerts & emergency notices</div></div>
+        <div class="dash-card c-team" onclick="switchAuthTab('stats', document.querySelector('#authority-screen .bottom-nav .nav-item:nth-child(2)'))">
+          <span class="arrow">›</span>
+          <div class="card-icon">👥</div>
+          <div class="card-title" data-i18n="population_overview">Population Overview</div>
+          <div class="card-sub"><strong>3.85M</strong><br><span class="card-meta">Abu Dhabi Emirate</span></div>
+        </div>
+        <div class="dash-card c-appt" onclick="switchAuthTab('prevention', document.querySelector('#authority-screen .bottom-nav .nav-item:nth-child(3)'))">
+          <span class="arrow">›</span>
+          <div class="card-icon">🛡️</div>
+          <div class="card-title" data-i18n="precision_prevention">Precision Prevention</div>
+          <div class="card-sub"><strong>12 programs</strong><br><span class="card-meta">Targeted risk reduction</span></div>
+        </div>
+        <div class="dash-card c-remind" onclick="switchAuthTab('surveillance', document.querySelector('#authority-screen .bottom-nav .nav-item:nth-child(4)'))">
+          <span class="arrow">›</span>
+          <div class="card-icon">📊</div>
+          <div class="card-title" data-i18n="disease_surveillance">Disease Surveillance</div>
+          <div class="card-sub"><strong>Live monitoring</strong><br><span class="card-meta">Chronic + infectious</span></div>
+        </div>
+        <div class="dash-card c-dose" onclick="switchAuthTab('surveillance', document.querySelector('#authority-screen .bottom-nav .nav-item:nth-child(4)'))">
+          <span class="arrow">›</span>
+          <div class="card-icon">💊</div>
+          <div class="card-title" data-i18n="treatment_adherence">Treatment Adherence</div>
+          <div class="card-sub"><strong>87.4%</strong><br><span class="card-meta">Abu Dhabi average</span></div>
+        </div>
+        <div class="dash-card c-device" onclick="switchAuthTab('prevention', document.querySelector('#authority-screen .bottom-nav .nav-item:nth-child(3)'))">
+          <span class="arrow">›</span>
+          <div class="card-icon">🔍</div>
+          <div class="card-title" data-i18n="population_screening">Population Screening</div>
+          <div class="card-sub"><strong>7 programs</strong><br><span class="card-meta">IFCE + cancer screening</span></div>
+        </div>
+        <div class="dash-card c-health" onclick="switchAuthTab('prevention', document.querySelector('#authority-screen .bottom-nav .nav-item:nth-child(3)'))">
+          <span class="arrow">›</span>
+          <div class="card-icon">💉</div>
+          <div class="card-title" data-i18n="vaccination_programs">Vaccination Programs</div>
+          <div class="card-sub"><strong>94.2%</strong><br><span class="card-meta">Childhood coverage</span></div>
+        </div>
+        <div class="dash-card" style="background:#FDECEC;grid-column:span 2" onclick="switchAuthTab('reports', document.querySelector('#authority-screen .bottom-nav .nav-item:nth-child(5)'))">
+          <span class="arrow">›</span>
+          <div class="card-icon">🚨</div>
+          <div class="card-title" data-i18n="public_health_alerts">Public Health Alerts</div>
+          <div class="card-sub"><strong>2 active notices</strong> • Seasonal flu + heat advisory</div>
+        </div>
       </div>
     </div>
 
     <div id="auth-tab-stats" class="sub-page">
-      <div class="page-title">Population Statistics</div>
-      <div class="list-card"><div class="list-icon">📈</div><div class="list-info"><h4>Population Demographics</h4><p>Age, gender & geographic data</p></div></div>
-      <div class="list-card"><div class="list-icon">📊</div><div class="list-info"><h4>Growth Rate</h4><p>Birth & death statistics</p></div></div>
+      <div class="page-title" data-i18n="statistics">Population Statistics</div>
+      <div class="stat-grid">
+        <div class="stat-box accent-blue"><div class="sv">3.85M</div><div class="sl" data-i18n="total_population">Total Population</div></div>
+        <div class="stat-box accent-green"><div class="sv">1.12M</div><div class="sl" data-i18n="uae_nationals">UAE Nationals</div></div>
+        <div class="stat-box accent-orange"><div class="sv">2.73M</div><div class="sl" data-i18n="residents_expats">Residents / Expats</div></div>
+        <div class="stat-box accent-purple"><div class="sv">29.1%</div><div class="sl" data-i18n="nationals_share">Nationals Share</div></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="geo_distribution">Geographic Distribution — Abu Dhabi</h4>
+        <div class="bar-row"><div class="bar-label" data-i18n="ad_city">Abu Dhabi City</div><div class="bar-track"><div class="bar-fill" style="width:48%;background:#2B6CB0"></div></div><div class="bar-val">48%</div></div>
+        <div class="bar-row"><div class="bar-label" data-i18n="al_ain">Al Ain</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#23A879"></div></div><div class="bar-val">28%</div></div>
+        <div class="bar-row"><div class="bar-label" data-i18n="al_dhafra">Al Dhafra</div><div class="bar-track"><div class="bar-fill" style="width:16%;background:#E67E22"></div></div><div class="bar-val">16%</div></div>
+        <div class="bar-row"><div class="bar-label" data-i18n="islands_other">Islands / Other</div><div class="bar-track"><div class="bar-fill" style="width:8%;background:#7C4DFF"></div></div><div class="bar-val">8%</div></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="age_structure">Age Structure</h4>
+        <div class="bar-row"><div class="bar-label">0–14 yrs</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:#3498DB"></div></div><div class="bar-val">18%</div></div>
+        <div class="bar-row"><div class="bar-label">15–39 yrs</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#23A879"></div></div><div class="bar-val">52%</div></div>
+        <div class="bar-row"><div class="bar-label">40–59 yrs</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:#F39C12"></div></div><div class="bar-val">22%</div></div>
+        <div class="bar-row"><div class="bar-label">60+ yrs</div><div class="bar-track"><div class="bar-fill" style="width:8%;background:#E74C3C"></div></div><div class="bar-val">8%</div></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="gender_balance">Gender Balance</h4>
+        <div style="display:flex;gap:16px;align-items:center;justify-content:center;padding:8px 0">
+          <div class="ring-chart" style="background:conic-gradient(#2B6CB0 0% 62%, #E91E8C 62% 100%)">
+            <div class="ring-inner"><strong>62%</strong><small data-i18n="male">Male</small></div>
+          </div>
+          <div class="ring-chart" style="background:conic-gradient(#E91E8C 0% 38%, #2B6CB0 38% 100%)">
+            <div class="ring-inner"><strong>38%</strong><small data-i18n="female">Female</small></div>
+          </div>
+        </div>
+        <div class="pie-legend" style="justify-content:center">
+          <span><i class="dot" style="background:#2B6CB0"></i> Male 62%</span>
+          <span><i class="dot" style="background:#E91E8C"></i> Female 38%</span>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-box accent-green"><div class="sv">1.8%</div><div class="sl" data-i18n="annual_growth">Annual Growth</div></div>
+        <div class="stat-box accent-blue"><div class="sv">12.4</div><div class="sl" data-i18n="births_per">Births / 1,000</div></div>
+        <div class="stat-box accent-orange"><div class="sv">1.9</div><div class="sl" data-i18n="deaths_per">Deaths / 1,000</div></div>
+        <div class="stat-box accent-purple"><div class="sv">79.2</div><div class="sl" data-i18n="life_expectancy">Life Expectancy</div></div>
+      </div>
     </div>
 
     <div id="auth-tab-prevention" class="sub-page">
-      <div class="page-title">Prevention & Screening</div>
-      <div class="list-card"><div class="list-icon">🛡️</div><div class="list-info"><h4>Precision Prevention Programs</h4><p>Targeted risk reduction</p></div></div>
-      <div class="list-card"><div class="list-icon">🔍</div><div class="list-info"><h4>Screening Programs</h4><p>Community campaigns</p></div></div>
-      <div class="list-card"><div class="list-icon">💉</div><div class="list-info"><h4>Vaccination Programs</h4><p>Coverage & scheduling</p></div></div>
+      <div class="page-title" data-i18n="prevention">Prevention & Screening</div>
+
+      <div class="chart-card">
+        <h4 data-i18n="vacc_coverage">Vaccination Coverage — Abu Dhabi</h4>
+        <div class="bar-row"><div class="bar-label">MMR</div><div class="bar-track"><div class="bar-fill" style="width:96%;background:#23A879"></div></div><div class="bar-val">96%</div></div>
+        <div class="bar-row"><div class="bar-label">Polio</div><div class="bar-track"><div class="bar-fill" style="width:97%;background:#2B6CB0"></div></div><div class="bar-val">97%</div></div>
+        <div class="bar-row"><div class="bar-label">Hep B</div><div class="bar-track"><div class="bar-fill" style="width:95%;background:#7C4DFF"></div></div><div class="bar-val">95%</div></div>
+        <div class="bar-row"><div class="bar-label">Influenza</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:#E67E22"></div></div><div class="bar-val">68%</div></div>
+        <div class="bar-row"><div class="bar-label">COVID Boost</div><div class="bar-track"><div class="bar-fill" style="width:74%;background:#E74C3C"></div></div><div class="bar-val">74%</div></div>
+        <div class="pie-legend">
+          <span><i class="dot" style="background:#23A879"></i> Target ≥ 90%</span>
+          <span style="color:#23A879;font-weight:700">Overall childhood: 94.2%</span>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="early_detection">Early Detection / Screening Programs</h4>
+        <div class="stat-grid" style="margin-bottom:12px">
+          <div class="stat-box accent-blue"><div class="sv">412K</div><div class="sl" data-i18n="ifce_screened">IFCE Screened</div></div>
+          <div class="stat-box accent-green"><div class="sv">89%</div><div class="sl" data-i18n="eligible_covered">Eligible Covered</div></div>
+          <div class="stat-box accent-orange"><div class="sv">28K</div><div class="sl" data-i18n="breast_cancer">Breast Cancer</div></div>
+          <div class="stat-box accent-purple"><div class="sv">19K</div><div class="sl" data-i18n="colon_cancer">Colon Cancer</div></div>
+        </div>
+        <div class="bar-row"><div class="bar-label">IFCE</div><div class="bar-track"><div class="bar-fill" style="width:89%;background:#2B6CB0"></div></div><div class="bar-val">89%</div></div>
+        <div class="bar-row"><div class="bar-label">Breast</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#E91E8C"></div></div><div class="bar-val">72%</div></div>
+        <div class="bar-row"><div class="bar-label">Colon</div><div class="bar-track"><div class="bar-fill" style="width:58%;background:#23A879"></div></div><div class="bar-val">58%</div></div>
+        <div class="bar-row"><div class="bar-label">Diabetes</div><div class="bar-track"><div class="bar-fill" style="width:81%;background:#E67E22"></div></div><div class="bar-val">81%</div></div>
+        <div class="bar-row"><div class="bar-label">CV Risk</div><div class="bar-track"><div class="bar-fill" style="width:64%;background:#7C4DFF"></div></div><div class="bar-val">64%</div></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="precision_active">Precision Prevention Programs (Active)</h4>
+        <div class="list-card" style="margin-bottom:8px"><div class="list-icon">❤️</div><div class="list-info"><h4 data-i18n="cv_risk">Cardiovascular Risk Reduction</h4><p>48,200 enrolled • 22% risk drop YoY</p></div></div>
+        <div class="list-card" style="margin-bottom:8px"><div class="list-icon">🩸</div><div class="list-info"><h4 data-i18n="diabetes_pathway">Diabetes Prevention Pathway</h4><p>31,500 pre-diabetic • 18% reverted to normal</p></div></div>
+        <div class="list-card" style="margin-bottom:8px"><div class="list-icon">🫁</div><div class="list-info"><h4 data-i18n="tobacco_cessation">Tobacco Cessation</h4><p>12,800 participants • 34% quit rate at 6 months</p></div></div>
+        <div class="list-card" style="margin-bottom:0"><div class="list-icon">🤰</div><div class="list-info"><h4 data-i18n="maternal_child">Maternal & Child Health</h4><p>96% antenatal coverage • 0.8% low birth weight</p></div></div>
+      </div>
     </div>
 
     <div id="auth-tab-surveillance" class="sub-page">
-      <div class="page-title">Disease Surveillance</div>
-      <div class="list-card"><div class="list-icon">🫀</div><div class="list-info"><h4>Chronic Diseases</h4><p>Diabetes, hypertension tracking</p></div></div>
-      <div class="list-card"><div class="list-icon">🦠</div><div class="list-info"><h4>Infectious & Contagious</h4><p>Outbreak monitoring</p></div></div>
-      <div class="list-card"><div class="list-icon">📅</div><div class="list-info"><h4>Seasonal / Epidemic</h4><p>Seasonal patterns</p></div></div>
+      <div class="page-title" data-i18n="disease_surveillance">Disease Surveillance</div>
+
+      <div class="chart-card">
+        <h4 data-i18n="chronic_prevalence">Chronic Disease Prevalence — Abu Dhabi</h4>
+        <div class="bar-row"><div class="bar-label">Diabetes</div><div class="bar-track"><div class="bar-fill" style="width:16.3%;background:#E74C3C"></div></div><div class="bar-val">16.3%</div></div>
+        <div class="bar-row"><div class="bar-label">Hypertension</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:#E67E22"></div></div><div class="bar-val">22.0%</div></div>
+        <div class="bar-row"><div class="bar-label">Obesity</div><div class="bar-track"><div class="bar-fill" style="width:29%;background:#F39C12"></div></div><div class="bar-val">29.0%</div></div>
+        <div class="bar-row"><div class="bar-label">Dyslipidemia</div><div class="bar-track"><div class="bar-fill" style="width:34%;background:#9B59B6"></div></div><div class="bar-val">34.0%</div></div>
+        <div class="bar-row"><div class="bar-label">Asthma</div><div class="bar-track"><div class="bar-fill" style="width:9.5%;background:#3498DB"></div></div><div class="bar-val">9.5%</div></div>
+        <div class="bar-row"><div class="bar-label">CKD</div><div class="bar-track"><div class="bar-fill" style="width:6.2%;background:#1ABC9C"></div></div><div class="bar-val">6.2%</div></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="adherence_by_condition">Treatment Adherence by Condition</h4>
+        <div class="bar-row"><div class="bar-label">Diabetes</div><div class="bar-track"><div class="bar-fill" style="width:84%;background:#23A879"></div></div><div class="bar-val">84%</div></div>
+        <div class="bar-row"><div class="bar-label">Hypertension</div><div class="bar-track"><div class="bar-fill" style="width:91%;background:#2B6CB0"></div></div><div class="bar-val">91%</div></div>
+        <div class="bar-row"><div class="bar-label">Heart Failure</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:#7C4DFF"></div></div><div class="bar-val">78%</div></div>
+        <div class="bar-row"><div class="bar-label">Asthma</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#E67E22"></div></div><div class="bar-val">72%</div></div>
+        <div class="pie-legend"><span style="font-weight:700;color:#23A879">Overall adherence: 87.4%</span></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="infectious_30d">Infectious Disease — 30-Day Snapshot</h4>
+        <div class="stat-grid">
+          <div class="stat-box accent-blue"><div class="sv">142</div><div class="sl" data-i18n="influenza_cases">Influenza cases</div></div>
+          <div class="stat-box accent-green"><div class="sv">38</div><div class="sl" data-i18n="rsv_cases">RSV cases</div></div>
+          <div class="stat-box accent-orange"><div class="sv">12</div><div class="sl" data-i18n="foodborne">Foodborne</div></div>
+          <div class="stat-box accent-red"><div class="sv">0</div><div class="sl" data-i18n="outbreak_alerts">Outbreak alerts</div></div>
+        </div>
+        <div class="bar-row"><div class="bar-label">Influenza</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#3498DB"></div></div><div class="bar-val">142</div></div>
+        <div class="bar-row"><div class="bar-label">RSV</div><div class="bar-track"><div class="bar-fill" style="width:19%;background:#23A879"></div></div><div class="bar-val">38</div></div>
+        <div class="bar-row"><div class="bar-label">Gastro</div><div class="bar-track"><div class="bar-fill" style="width:6%;background:#E67E22"></div></div><div class="bar-val">12</div></div>
+        <div class="bar-row"><div class="bar-label">Other</div><div class="bar-track"><div class="bar-fill" style="width:5%;background:#95A5A6"></div></div><div class="bar-val">9</div></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="seasonal_pattern">Seasonal Pattern (Flu index)</h4>
+        <div class="bar-row"><div class="bar-label">Jan</div><div class="bar-track"><div class="bar-fill" style="width:88%;background:#E74C3C"></div></div><div class="bar-val">High</div></div>
+        <div class="bar-row"><div class="bar-label">Mar</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#F39C12"></div></div><div class="bar-val">Med</div></div>
+        <div class="bar-row"><div class="bar-label">Jun</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:#23A879"></div></div><div class="bar-val">Low</div></div>
+        <div class="bar-row"><div class="bar-label">Sep</div><div class="bar-track"><div class="bar-fill" style="width:32%;background:#F39C12"></div></div><div class="bar-val">Med</div></div>
+        <div class="bar-row"><div class="bar-label">Nov</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#E74C3C"></div></div><div class="bar-val">High</div></div>
+      </div>
     </div>
 
     <div id="auth-tab-reports" class="sub-page">
-      <div class="page-title">Reports & Alerts</div>
-      <div class="list-card"><div class="list-icon">📑</div><div class="list-info"><h4>Performance Reports</h4><p>Weekly & monthly</p></div></div>
-      <div class="list-card"><div class="list-icon">🚨</div><div class="list-info"><h4>Public Health Alerts</h4><p>Current notices</p></div></div>
-      <div class="list-card"><div class="list-icon">⚠️</div><div class="list-info"><h4>Medical Error Reports</h4><p>Anonymized analysis</p></div></div>
+      <div class="page-title" data-i18n="reports">Reports & Alerts</div>
+
+      <div class="chart-card" style="border-left:4px solid #E74C3C">
+        <h4 data-i18n="active_alerts">🚨 Active Public Health Alerts</h4>
+        <div class="list-card" style="margin-bottom:8px;background:#FDECEC"><div class="list-icon" style="background:#FBCBCB">🌡️</div><div class="list-info"><h4 data-i18n="heat_advisory">Heat Health Advisory</h4><p>Outdoor work limits 12:00–16:00 • Valid until 30 Nov</p></div></div>
+        <div class="list-card" style="margin-bottom:0;background:#FFF6E8"><div class="list-icon" style="background:#FFE8C4">🤧</div><div class="list-info"><h4 data-i18n="flu_rise">Seasonal Influenza Rise</h4><p>+28% vs last week • Vaccination recommended for 60+</p></div></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="monthly_kpis">Monthly Performance KPIs</h4>
+        <div class="bar-row"><div class="bar-label">Screening</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#23A879"></div></div><div class="bar-val">92%</div></div>
+        <div class="bar-row"><div class="bar-label">Vaccination</div><div class="bar-track"><div class="bar-fill" style="width:94%;background:#2B6CB0"></div></div><div class="bar-val">94%</div></div>
+        <div class="bar-row"><div class="bar-label">Adherence</div><div class="bar-track"><div class="bar-fill" style="width:87%;background:#7C4DFF"></div></div><div class="bar-val">87%</div></div>
+        <div class="bar-row"><div class="bar-label">Response</div><div class="bar-track"><div class="bar-fill" style="width:96%;background:#E67E22"></div></div><div class="bar-val">96%</div></div>
+        <div class="bar-row"><div class="bar-label">Data Quality</div><div class="bar-track"><div class="bar-fill" style="width:99%;background:#1ABC9C"></div></div><div class="bar-val">99%</div></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="error_reports_title">Medical Error Reports (Anonymized)</h4>
+        <div class="stat-grid">
+          <div class="stat-box accent-blue"><div class="sv">47</div><div class="sl">Reports (30d)</div></div>
+          <div class="stat-box accent-green"><div class="sv">91%</div><div class="sl">Closed</div></div>
+          <div class="stat-box accent-orange"><div class="sv">4</div><div class="sl">High severity</div></div>
+          <div class="stat-box accent-purple"><div class="sv">12</div><div class="sl">Near misses</div></div>
+        </div>
+        <div class="bar-row"><div class="bar-label">Medication</div><div class="bar-track"><div class="bar-fill" style="width:38%;background:#E74C3C"></div></div><div class="bar-val">38%</div></div>
+        <div class="bar-row"><div class="bar-label">Procedure</div><div class="bar-track"><div class="bar-fill" style="width:24%;background:#E67E22"></div></div><div class="bar-val">24%</div></div>
+        <div class="bar-row"><div class="bar-label">Lab / Path</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:#F39C12"></div></div><div class="bar-val">18%</div></div>
+        <div class="bar-row"><div class="bar-label">Admin</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:#95A5A6"></div></div><div class="bar-val">20%</div></div>
+      </div>
+
+      <div class="chart-card">
+        <h4 data-i18n="weekly_summary">Weekly Public Health Summary</h4>
+        <div class="list-card" style="margin-bottom:8px"><div class="list-icon">📑</div><div class="list-info"><h4 data-i18n="week45">Week 45 Report</h4><p>Published • 3.2K facilities reporting</p></div></div>
+        <div class="list-card" style="margin-bottom:8px"><div class="list-icon">📊</div><div class="list-info"><h4 data-i18n="chronic_dashboard">Chronic Disease Dashboard</h4><p>Updated daily • Last sync 06:00</p></div></div>
+        <div class="list-card" style="margin-bottom:0"><div class="list-icon">🛡️</div><div class="list-info"><h4 data-i18n="prevention_scorecard">Prevention Scorecard</h4><p>Abu Dhabi: 91/100 • Rank #1 among emirates</p></div></div>
+      </div>
     </div>
 
     <div class="bottom-nav">
-      <button class="nav-item active" onclick="switchAuthTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label">Overview</span></button>
-      <button class="nav-item" onclick="switchAuthTab('stats', this)"><span class="nav-icon">📊</span><span class="nav-label">Statistics</span></button>
-      <button class="nav-item" onclick="switchAuthTab('prevention', this)"><span class="nav-icon">🛡️</span><span class="nav-label">Prevention</span></button>
-      <button class="nav-item" onclick="switchAuthTab('surveillance', this)"><span class="nav-icon">🦠</span><span class="nav-label">Surveillance</span></button>
-      <button class="nav-item" onclick="switchAuthTab('reports', this)"><span class="nav-icon">📑</span><span class="nav-label">Reports</span></button>
+      <button class="nav-item active" onclick="switchAuthTab('overview', this)"><span class="nav-icon">🏠</span><span class="nav-label" data-i18n="overview">Overview</span></button>
+      <button class="nav-item" onclick="switchAuthTab('stats', this)"><span class="nav-icon">📊</span><span class="nav-label" data-i18n="statistics">Statistics</span></button>
+      <button class="nav-item" onclick="switchAuthTab('prevention', this)"><span class="nav-icon">🛡️</span><span class="nav-label" data-i18n="prevention">Prevention</span></button>
+      <button class="nav-item" onclick="switchAuthTab('surveillance', this)"><span class="nav-icon">🦠</span><span class="nav-label" data-i18n="surveillance">Surveillance</span></button>
+      <button class="nav-item" onclick="switchAuthTab('reports', this)"><span class="nav-icon">📑</span><span class="nav-label" data-i18n="reports">Reports</span></button>
     </div>
   </div>
 
@@ -1682,10 +2481,24 @@
 
   <script>
     // ========== NAVIGATION ==========
-    function showScreen(id) {
+    const navHistory = [];
+    function showScreen(id, pushHistory) {
+      const current = document.querySelector('.screen.active');
+      if (pushHistory !== false && current && current.id !== id) {
+        navHistory.push(current.id);
+        if (navHistory.length > 20) navHistory.shift();
+      }
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       window.scrollTo(0, 0);
+    }
+    function goBack() {
+      if (navHistory.length > 0) {
+        const prev = navHistory.pop();
+        showScreen(prev, false);
+      } else {
+        showScreen('auth-screen', false);
+      }
     }
 
     function enterPortal(portal) {
@@ -1800,6 +2613,7 @@
       if (nameEl) nameEl.textContent = name.split(' ')[0];
 
       showToast('Welcome back, ' + name.split(' ')[0]);
+      navHistory.length = 0;
       setTimeout(() => {
         enterPortal(role);
       }, 400);
@@ -1848,6 +2662,586 @@
     } catch (e) {
       console.log('localStorage not available in this context');
     }
+
+    // ========== i18n (English / Arabic) ==========
+    const I18N = {
+      en: {
+        tagline: 'Solidarity For Life',
+        sign_in: 'Sign In',
+        sign_up: 'Sign Up',
+        demo_footer: 'Demo Prototype • No real data stored',
+        create_account: 'Create Account',
+        choose_role: 'Choose your role to continue',
+        role_patient: 'Patient',
+        role_physician: 'Physician',
+        role_pharmacist: 'Pharmacist',
+        role_caregiver: 'Caregiver',
+        role_network: 'Medical Network',
+        role_authority: 'Authorities',
+        full_name: 'Full Name',
+        email: 'Email',
+        password: 'Password',
+        create_account_btn: 'Create Account',
+        or_continue: 'or continue with',
+        placeholder_name: 'Enter your full name',
+        placeholder_email: 'you@example.com',
+        welcome_back: 'Welcome back',
+        select_portal: 'Select a portal to continue',
+        my_next_dose: 'My Next Dose',
+        my_next_appt: 'My Next Appointment',
+        my_reminders: 'My Reminders',
+        my_devices: 'My Devices',
+        my_care_team: 'My Care Team',
+        my_health: 'My Health Snapshot',
+        mark_taken: 'Mark as Taken',
+        medical_record: 'Medical Record',
+        medications: 'Medications',
+        notifications: 'Notifications',
+        authorized: 'Authorized',
+        services: 'Services',
+        overview: 'Overview',
+        ask_placeholder: 'Ask Noblepharma...',
+        account_created: 'Account created successfully!',
+        dose_taken: '✅ Dose marked as taken',
+        system_alerts: 'System Alerts',
+        desc_patient: 'Medications, appointments & health records',
+        desc_physician: 'Patients, requests & consultations',
+        desc_pharmacist: 'Pharmacists & smart dispensing',
+        desc_caregiver: 'Family & care support tools',
+        desc_network: 'Hospitals, labs & providers',
+        desc_authority: 'Public health & population data',
+        todays_schedule: "Today's Schedule",
+        consultation_requests: 'Consultation Requests',
+        clinical_alerts: 'Clinical Alerts',
+        urgent_cases: 'Urgent Cases',
+        my_patients: 'My Patients',
+        prescriptions: 'Prescriptions',
+        authorization: 'Authorization',
+        network: 'Network',
+        requests: 'Requests',
+        my_lioras: 'My LIORAs',
+        prescription_requests: 'Prescription Requests',
+        inventory_alerts: 'Inventory Alerts',
+        urgent_refills: 'Urgent Refills',
+        dispensing_queue: 'Dispensing Queue',
+        device_updates: 'Device Updates',
+        my_hosts: 'My Hosts',
+        my_tasks: 'My Tasks',
+        care_alerts: 'Care Alerts',
+        population_overview: 'Population Overview',
+        precision_prevention: 'Precision Prevention',
+        disease_surveillance: 'Disease Surveillance',
+        treatment_adherence: 'Treatment Adherence',
+        population_screening: 'Population Screening',
+        vaccination_programs: 'Vaccination Programs',
+        public_health_alerts: 'Public Health Alerts',
+        statistics: 'Statistics',
+        prevention: 'Prevention',
+        surveillance: 'Surveillance',
+        reports: 'Reports',
+        authorized_persons: 'Authorized Persons',
+        medical_services: 'Medical Services',
+        hosts: 'Hosts',
+        access_controls: 'Access Controls',
+        medical_approvals: 'Medical Approvals',
+        emergency_permissions: 'Emergency Permissions',
+        med_furo_sub: 'Once daily • Next: 8:00 AM',
+        med_met_sub: 'Twice daily • After meals',
+        med_ator_sub: 'Once at night',
+        request_liora: 'Request LIORA Drugs',
+        request_liora_sub: 'Smart personalized medication',
+        notif_med_alert: 'Medication Alert',
+        notif_med_alert_sub: 'Furosemide dose due in 25 minutes',
+        notif_appt: 'Appointment Reminder',
+        notif_appt_sub: 'Dr. Ahmad – Sat 5:30 PM',
+        notif_supply: 'Supply Running Low',
+        notif_supply_sub: 'Metformin – 4 days remaining',
+        notif_msg: 'Message from Care Team',
+        notif_msg_sub: 'Dr. Sarah: Please update your BP readings',
+        auth_sarah_sub: 'Primary Physician • Full access',
+        auth_ahmad_sub: 'Cardiologist • Limited access',
+        auth_noura_sub: 'Caregiver (Sister) • Medication + Appointments',
+        add_authorized: 'Add Authorized Person',
+        add_authorized_sub: 'Grant access to family or staff',
+        book_appt: 'Book an Appointment',
+        book_appt_sub: 'Find doctors & available slots',
+        smart_devices: 'My Smart Devices',
+        smart_devices_sub: 'Blood pressure, glucose, wearable',
+        search_services: 'Search Medical Services',
+        search_services_sub: 'Labs, imaging, pharmacies near you',
+        services_history: 'Services History',
+        services_history_sub: 'Past appointments & results',
+        pt_lina_sub: 'Hypertension • Last visit: 2 days ago',
+        pt_omar_sub: 'Diabetes Type 2 • Active treatment',
+        pt_sara_sub: 'Post-op follow-up',
+        access_controls_sub: 'Manage patient data permissions',
+        medical_approvals_sub: '3 pending approvals',
+        emergency_permissions_sub: 'Quick access overrides',
+        patient_alert: 'Patient Alert',
+        patient_alert_sub: 'Lina Al-Rashid – BP elevated',
+        clinical_message: 'Clinical Message',
+        clinical_message_sub: 'Lab results ready for review',
+        caregivers_team: 'Caregivers Team',
+        caregivers_team_sub: 'Linked caregivers',
+        consulting_physicians: 'Consulting Physicians',
+        consulting_physicians_sub: '8 colleagues',
+        partner_centers: 'Partner Centers',
+        partner_centers_sub: 'Hospitals & clinics',
+        consultation_waiting: '5 waiting',
+        schedule_mgmt: 'Schedule Management',
+        todays_slots: "Today's slots",
+        reschedule_cancel: 'Reschedule / Cancel',
+        manage_bookings: 'Manage bookings',
+        liora_a_sub: 'Status: Active • Cartridge 68%',
+        liora_b_sub: 'Status: Needs refill',
+        inventory_mgmt: 'Inventory Management',
+        inventory_mgmt_sub: 'Drug tracking & stock levels',
+        dispensing_approvals: 'Dispensing Approvals',
+        dispensing_approvals_sub: '5 waiting verification',
+        security_verifications: 'Security Verifications',
+        security_verifications_sub: 'Prescription validation',
+        inventory_alert: 'Inventory Alert',
+        inventory_alert_sub: 'Furosemide stock low',
+        system_update: 'System Update',
+        system_update_sub: 'New LIORA firmware available',
+        prescribing_physicians: 'Prescribing Physicians',
+        prescribing_physicians_sub: 'Linked doctors',
+        healthcare_facilities: 'Healthcare Facilities',
+        healthcare_facilities_sub: 'Partner clinics & hospitals',
+        medication_orders: 'Medication Orders',
+        medication_orders_sub: '12 new requests',
+        refill_processing: 'Refill Processing',
+        refill_processing_sub: 'Status tracking',
+        host_lina_sub: 'Sister • Medications + Appointments',
+        host_omar_sub: 'Father • Full care support',
+        daily_requirements: 'Daily Requirements',
+        daily_requirements_sub: 'Health tracking & care plans',
+        access_permissions: 'Access Permissions',
+        access_permissions_sub: 'What you can view & do',
+        delegated_authorities: 'Delegated Authorities',
+        delegated_authorities_sub: 'Medical approvals granted',
+        task_reminder: 'Task Reminder',
+        task_reminder_sub: 'Lina – 8:00 AM dose',
+        schedule_update: 'Schedule Update',
+        schedule_update_sub: 'Appointment moved to 5:30 PM',
+        assistance_requests: 'Assistance Requests',
+        assistance_requests_sub: 'Request help from care team',
+        supply_reorders: 'Supply Reorders',
+        supply_reorders_sub: 'Medication & supplies',
+        schedule_adjustments: 'Schedule Adjustments',
+        schedule_adjustments_sub: 'Change care times',
+        attending_physicians: 'Attending Physicians',
+        healthcare_providers: 'Healthcare Providers',
+        linked_facilities: 'Linked facilities',
+        emergency_contacts: 'Emergency Contacts',
+        emergency_contacts_sub: 'Quick access numbers',
+        pop_demographics: 'Population Demographics',
+        pop_demo_sub: 'Age, gender & geographic data',
+        growth_rate: 'Growth Rate',
+        growth_rate_sub: 'Birth & death statistics',
+        precision_prevention_programs: 'Precision Prevention Programs',
+        precision_prevention_programs_sub: 'Targeted risk reduction',
+        screening_programs: 'Screening Programs',
+        screening_programs_sub: 'Community campaigns',
+        vaccination_sub: 'Coverage & scheduling',
+        chronic_diseases: 'Chronic Diseases',
+        chronic_diseases_sub: 'Diabetes, hypertension tracking',
+        infectious: 'Infectious & Contagious',
+        infectious_sub: 'Outbreak monitoring',
+        seasonal: 'Seasonal / Epidemic',
+        seasonal_sub: 'Seasonal patterns',
+        performance_reports: 'Performance Reports',
+        performance_reports_sub: 'Weekly & monthly',
+        current_notices: 'Current notices',
+        medical_error_reports: 'Medical Error Reports',
+        medical_error_reports_sub: 'Anonymized analysis',
+        reminders_sub: 'Your medication supply is running low.',
+        devices_sub: 'All devices connected',
+
+        kpi_ad_pop: 'Abu Dhabi Pop.',
+        kpi_vaccination: 'Vaccination',
+        kpi_adherence: 'Adherence',
+        kpi_risk: 'Risk Programs',
+        total_population: 'Total Population',
+        uae_nationals: 'UAE Nationals',
+        residents_expats: 'Residents / Expats',
+        nationals_share: 'Nationals Share',
+        geo_distribution: 'Geographic Distribution — Abu Dhabi',
+        ad_city: 'Abu Dhabi City',
+        al_ain: 'Al Ain',
+        al_dhafra: 'Al Dhafra',
+        islands_other: 'Islands / Other',
+        age_structure: 'Age Structure',
+        gender_balance: 'Gender Balance',
+        male: 'Male',
+        female: 'Female',
+        annual_growth: 'Annual Growth',
+        births_per: 'Births / 1,000',
+        deaths_per: 'Deaths / 1,000',
+        life_expectancy: 'Life Expectancy',
+        vacc_coverage: 'Vaccination Coverage — Abu Dhabi',
+        early_detection: 'Early Detection / Screening Programs',
+        ifce_screened: 'IFCE Screened',
+        eligible_covered: 'Eligible Covered',
+        breast_cancer: 'Breast Cancer',
+        colon_cancer: 'Colon Cancer',
+        precision_active: 'Precision Prevention Programs (Active)',
+        cv_risk: 'Cardiovascular Risk Reduction',
+        diabetes_pathway: 'Diabetes Prevention Pathway',
+        tobacco_cessation: 'Tobacco Cessation',
+        maternal_child: 'Maternal & Child Health',
+        chronic_prevalence: 'Chronic Disease Prevalence — Abu Dhabi',
+        adherence_by_condition: 'Treatment Adherence by Condition',
+        infectious_30d: 'Infectious Disease — 30-Day Snapshot',
+        influenza_cases: 'Influenza cases',
+        rsv_cases: 'RSV cases',
+        foodborne: 'Foodborne',
+        outbreak_alerts: 'Outbreak alerts',
+        seasonal_pattern: 'Seasonal Pattern (Flu index)',
+        active_alerts: '🚨 Active Public Health Alerts',
+        heat_advisory: 'Heat Health Advisory',
+        flu_rise: 'Seasonal Influenza Rise',
+        monthly_kpis: 'Monthly Performance KPIs',
+        error_reports_title: 'Medical Error Reports (Anonymized)',
+        weekly_summary: 'Weekly Public Health Summary',
+        week45: 'Week 45 Report',
+        chronic_dashboard: 'Chronic Disease Dashboard',
+        prevention_scorecard: 'Prevention Scorecard',
+
+        adherence_week: 'Weekly Adherence — Abu Dhabi Clinic',
+        refill_status: 'Refill Status — SEHA Pharmacy Network',
+        days_left: 'Days left',
+        low_stock: 'Low stock',
+        clinic_load: 'Clinic Load — Cleveland Clinic Abu Dhabi',
+        care_week: 'Care Tasks This Week',
+        liora_stock: 'Inventory — Abu Dhabi Hub',
+        providers_facilities: 'Healthcare Providers & Facilities'
+      },
+      ar: {
+        tagline: 'تضامن من أجل الحياة',
+        sign_in: 'تسجيل الدخول',
+        sign_up: 'إنشاء حساب',
+        demo_footer: 'نموذج تجريبي • لا يتم تخزين بيانات حقيقية',
+        create_account: 'إنشاء حساب',
+        choose_role: 'اختر دورك للمتابعة',
+        role_patient: 'مريض',
+        role_physician: 'طبيب',
+        role_pharmacist: 'صيدلي',
+        role_caregiver: 'مقدّم رعاية',
+        role_network: 'الشبكة الطبية',
+        role_authority: 'الجهات الرقابية',
+        full_name: 'الاسم الكامل',
+        email: 'البريد الإلكتروني',
+        password: 'كلمة المرور',
+        create_account_btn: 'إنشاء الحساب',
+        or_continue: 'أو المتابعة عبر',
+        placeholder_name: 'أدخل اسمك الكامل',
+        placeholder_email: 'you@example.com',
+        welcome_back: 'مرحبًا بعودتك',
+        select_portal: 'اختر البوابة للمتابعة',
+        my_next_dose: 'جرعتي التالية',
+        my_next_appt: 'موعدي التالي',
+        my_reminders: 'تذكيراتي',
+        my_devices: 'أجهزتي',
+        my_care_team: 'فريق رعايتي',
+        my_health: 'لقطة صحتي',
+        mark_taken: 'تم التناول',
+        medical_record: 'السجل الطبي',
+        medications: 'الأدوية',
+        notifications: 'الإشعارات',
+        authorized: 'المخوّلون',
+        services: 'الخدمات',
+        overview: 'نظرة عامة',
+        ask_placeholder: 'اسأل Noblepharma...',
+        account_created: 'تم إنشاء الحساب بنجاح!',
+        dose_taken: '✅ تم تسجيل الجرعة',
+        system_alerts: 'تنبيهات النظام',
+        desc_patient: 'الأدوية والمواعيد والسجلات الصحية',
+        desc_physician: 'المرضى والطلبات والاستشارات',
+        desc_pharmacist: 'الصيادلة والصرف الذكي',
+        desc_caregiver: 'أدوات دعم الأسرة والرعاية',
+        desc_network: 'المستشفيات والمختبرات ومقدمو الخدمة',
+        desc_authority: 'الصحة العامة وبيانات السكان',
+        todays_schedule: 'جدول اليوم',
+        consultation_requests: 'طلبات الاستشارة',
+        clinical_alerts: 'تنبيهات سريرية',
+        urgent_cases: 'حالات عاجلة',
+        my_patients: 'مرضاي',
+        prescriptions: 'الوصفات',
+        authorization: 'الصلاحيات',
+        network: 'الشبكة',
+        requests: 'الطلبات',
+        my_lioras: 'أجهزة LIORA',
+        prescription_requests: 'طلبات الوصفات',
+        inventory_alerts: 'تنبيهات المخزون',
+        urgent_refills: 'إعادة تعبئة عاجلة',
+        dispensing_queue: 'قائمة الصرف',
+        device_updates: 'تحديثات الأجهزة',
+        my_hosts: 'المستفيدون',
+        my_tasks: 'مهامي',
+        care_alerts: 'تنبيهات الرعاية',
+        population_overview: 'نظرة على السكان',
+        precision_prevention: 'الوقاية الدقيقة',
+        disease_surveillance: 'رصد الأمراض',
+        treatment_adherence: 'الالتزام بالعلاج',
+        population_screening: 'فحوصات السكان',
+        vaccination_programs: 'برامج التطعيم',
+        public_health_alerts: 'تنبيهات الصحة العامة',
+        statistics: 'الإحصاءات',
+        prevention: 'الوقاية',
+        surveillance: 'الرصد',
+        reports: 'التقارير',
+        authorized_persons: 'الأشخاص المخوّلون',
+        medical_services: 'الخدمات الطبية',
+        hosts: 'المستفيدون',
+        access_controls: 'ضوابط الوصول',
+        medical_approvals: 'الموافقات الطبية',
+        emergency_permissions: 'صلاحيات الطوارئ',
+        med_furo_sub: 'مرة يوميًا • التالي: 8:00 ص',
+        med_met_sub: 'مرتين يوميًا • بعد الوجبات',
+        med_ator_sub: 'مرة ليلًا',
+        request_liora: 'طلب أدوية LIORA',
+        request_liora_sub: 'دواء ذكي مخصّص',
+        notif_med_alert: 'تنبيه دواء',
+        notif_med_alert_sub: 'جرعة فوروسيميد خلال 25 دقيقة',
+        notif_appt: 'تذكير بموعد',
+        notif_appt_sub: 'د. أحمد – السبت 5:30 م',
+        notif_supply: 'المخزون منخفض',
+        notif_supply_sub: 'ميتفورمين – متبقي 4 أيام',
+        notif_msg: 'رسالة من فريق الرعاية',
+        notif_msg_sub: 'د. سارة: يرجى تحديث قراءات ضغط الدم',
+        auth_sarah_sub: 'الطبيب الأساسي • صلاحية كاملة',
+        auth_ahmad_sub: 'طبيب قلب • صلاحية محدودة',
+        auth_noura_sub: 'مقدّمة رعاية (أخت) • أدوية + مواعيد',
+        add_authorized: 'إضافة شخص مخوّل',
+        add_authorized_sub: 'منح صلاحية لعائلة أو طاقم',
+        book_appt: 'حجز موعد',
+        book_appt_sub: 'ابحث عن أطباء ومواعيد متاحة',
+        smart_devices: 'أجهزتي الذكية',
+        smart_devices_sub: 'ضغط الدم، السكر، الأجهزة القابلة للارتداء',
+        search_services: 'البحث عن خدمات طبية',
+        search_services_sub: 'مختبرات، تصوير، صيدليات قريبة',
+        services_history: 'سجل الخدمات',
+        services_history_sub: 'المواعيد والنتائج السابقة',
+        pt_lina_sub: 'ارتفاع ضغط • آخر زيارة: قبل يومين',
+        pt_omar_sub: 'سكري نوع 2 • علاج نشط',
+        pt_sara_sub: 'متابعة ما بعد العملية',
+        access_controls_sub: 'إدارة صلاحيات بيانات المرضى',
+        medical_approvals_sub: '3 موافقات معلّقة',
+        emergency_permissions_sub: 'تجاوزات وصول سريعة',
+        patient_alert: 'تنبيه مريض',
+        patient_alert_sub: 'لينا الراشد – ارتفاع ضغط الدم',
+        clinical_message: 'رسالة سريرية',
+        clinical_message_sub: 'نتائج المختبر جاهزة للمراجعة',
+        caregivers_team: 'فريق مقدّمي الرعاية',
+        caregivers_team_sub: 'مقدّمو رعاية مرتبطون',
+        consulting_physicians: 'أطباء استشاريون',
+        consulting_physicians_sub: '8 زملاء',
+        partner_centers: 'مراكز شريكة',
+        partner_centers_sub: 'مستشفيات وعيادات',
+        consultation_waiting: '5 بانتظار الرد',
+        schedule_mgmt: 'إدارة الجدول',
+        todays_slots: 'مواعيد اليوم',
+        reschedule_cancel: 'إعادة جدولة / إلغاء',
+        manage_bookings: 'إدارة الحجوزات',
+        liora_a_sub: 'الحالة: نشط • الخرطوشة 68%',
+        liora_b_sub: 'الحالة: يحتاج إعادة تعبئة',
+        inventory_mgmt: 'إدارة المخزون',
+        inventory_mgmt_sub: 'تتبع الأدوية ومستويات المخزون',
+        dispensing_approvals: 'موافقات الصرف',
+        dispensing_approvals_sub: '5 بانتظار التحقق',
+        security_verifications: 'التحقق الأمني',
+        security_verifications_sub: 'التحقق من الوصفات',
+        inventory_alert: 'تنبيه مخزون',
+        inventory_alert_sub: 'مخزون فوروسيميد منخفض',
+        system_update: 'تحديث النظام',
+        system_update_sub: 'برنامج LIORA جديد متاح',
+        prescribing_physicians: 'الأطباء الواصفون',
+        prescribing_physicians_sub: 'أطباء مرتبطون',
+        healthcare_facilities: 'المنشآت الصحية',
+        healthcare_facilities_sub: 'عيادات ومستشفيات شريكة',
+        medication_orders: 'طلبات الأدوية',
+        medication_orders_sub: '12 طلبًا جديدًا',
+        refill_processing: 'معالجة إعادة التعبئة',
+        refill_processing_sub: 'تتبع الحالة',
+        host_lina_sub: 'أخت • أدوية + مواعيد',
+        host_omar_sub: 'أب • دعم رعاية كامل',
+        daily_requirements: 'المتطلبات اليومية',
+        daily_requirements_sub: 'تتبع الصحة وخطط الرعاية',
+        access_permissions: 'صلاحيات الوصول',
+        access_permissions_sub: 'ما يمكنك عرضه وفعله',
+        delegated_authorities: 'صلاحيات مفوّضة',
+        delegated_authorities_sub: 'موافقات طبية ممنوحة',
+        task_reminder: 'تذكير بمهمة',
+        task_reminder_sub: 'لينا – جرعة 8:00 ص',
+        schedule_update: 'تحديث الجدول',
+        schedule_update_sub: 'تم نقل الموعد إلى 5:30 م',
+        assistance_requests: 'طلبات المساعدة',
+        assistance_requests_sub: 'طلب مساعدة من فريق الرعاية',
+        supply_reorders: 'إعادة طلب المستلزمات',
+        supply_reorders_sub: 'أدوية ومستلزمات',
+        schedule_adjustments: 'تعديلات الجدول',
+        schedule_adjustments_sub: 'تغيير أوقات الرعاية',
+        attending_physicians: 'الأطباء المعالجون',
+        healthcare_providers: 'مقدمو الرعاية الصحية',
+        linked_facilities: 'منشآت مرتبطة',
+        emergency_contacts: 'جهات اتصال الطوارئ',
+        emergency_contacts_sub: 'أرقام وصول سريع',
+        pop_demographics: 'التركيبة السكانية',
+        pop_demo_sub: 'العمر والجنس والبيانات الجغرافية',
+        growth_rate: 'معدل النمو',
+        growth_rate_sub: 'إحصاءات المواليد والوفيات',
+        precision_prevention_programs: 'برامج الوقاية الدقيقة',
+        precision_prevention_programs_sub: 'تقليل المخاطر المستهدفة',
+        screening_programs: 'برامج الفحص',
+        screening_programs_sub: 'حملات مجتمعية',
+        vaccination_sub: 'التغطية والجدولة',
+        chronic_diseases: 'الأمراض المزمنة',
+        chronic_diseases_sub: 'تتبع السكري وارتفاع الضغط',
+        infectious: 'الأمراض المعدية والسارية',
+        infectious_sub: 'رصد الفاشيات',
+        seasonal: 'الموسمية / الوبائية',
+        seasonal_sub: 'الأنماط الموسمية',
+        performance_reports: 'تقارير الأداء',
+        performance_reports_sub: 'أسبوعي وشهري',
+        current_notices: 'الإشعارات الحالية',
+        medical_error_reports: 'تقارير الأخطاء الطبية',
+        medical_error_reports_sub: 'تحليل مجهول الهوية',
+        reminders_sub: 'مخزون أدويتك ينفد.',
+        devices_sub: 'جميع الأجهزة متصلة',
+
+        kpi_ad_pop: 'سكان أبوظبي',
+        kpi_vaccination: 'التطعيم',
+        kpi_adherence: 'الالتزام',
+        kpi_risk: 'برامج المخاطر',
+        total_population: 'إجمالي السكان',
+        uae_nationals: 'مواطنو الإمارات',
+        residents_expats: 'مقيمون / وافدون',
+        nationals_share: 'نسبة المواطنين',
+        geo_distribution: 'التوزيع الجغرافي — أبوظبي',
+        ad_city: 'مدينة أبوظبي',
+        al_ain: 'العين',
+        al_dhafra: 'الظفرة',
+        islands_other: 'الجزر / أخرى',
+        age_structure: 'التركيب العمري',
+        gender_balance: 'التوازن بين الجنسين',
+        male: 'ذكور',
+        female: 'إناث',
+        annual_growth: 'النمو السنوي',
+        births_per: 'مواليد / 1000',
+        deaths_per: 'وفيات / 1000',
+        life_expectancy: 'متوسط العمر',
+        vacc_coverage: 'تغطية التطعيم — أبوظبي',
+        early_detection: 'برامج الكشف المبكر والفحص',
+        ifce_screened: 'فحوصات IFCE',
+        eligible_covered: 'المستحقون المغطون',
+        breast_cancer: 'سرطان الثدي',
+        colon_cancer: 'سرطان القولون',
+        precision_active: 'برامج الوقاية الدقيقة (نشطة)',
+        cv_risk: 'تقليل مخاطر القلب',
+        diabetes_pathway: 'مسار الوقاية من السكري',
+        tobacco_cessation: 'الإقلاع عن التدخين',
+        maternal_child: 'صحة الأم والطفل',
+        chronic_prevalence: 'انتشار الأمراض المزمنة — أبوظبي',
+        adherence_by_condition: 'الالتزام بالعلاج حسب الحالة',
+        infectious_30d: 'الأمراض المعدية — آخر 30 يومًا',
+        influenza_cases: 'حالات الإنفلونزا',
+        rsv_cases: 'حالات RSV',
+        foodborne: 'أمراض غذائية',
+        outbreak_alerts: 'تنبيهات تفشي',
+        seasonal_pattern: 'النمط الموسمي (مؤشر الإنفلونزا)',
+        active_alerts: '🚨 تنبيهات الصحة العامة النشطة',
+        heat_advisory: 'تحذير صحي من الحرارة',
+        flu_rise: 'ارتفاع الإنفلونزا الموسمية',
+        monthly_kpis: 'مؤشرات الأداء الشهرية',
+        error_reports_title: 'تقارير الأخطاء الطبية (مجهولة)',
+        weekly_summary: 'الملخص الصحي الأسبوعي',
+        week45: 'تقرير الأسبوع 45',
+        chronic_dashboard: 'لوحة الأمراض المزمنة',
+        prevention_scorecard: 'بطاقة الوقاية',
+
+        adherence_week: 'الالتزام الأسبوعي — عيادة أبوظبي',
+        refill_status: 'حالة إعادة التعبئة — شبكة صيدليات صحة',
+        days_left: 'أيام متبقية',
+        low_stock: 'مخزون منخفض',
+        clinic_load: 'ضغط العيادة — كليفلاند كلينك أبوظبي',
+        care_week: 'مهام الرعاية هذا الأسبوع',
+        liora_stock: 'المخزون — مركز أبوظبي',
+        providers_facilities: 'مقدمو الرعاية والمنشآت الصحية'
+      }
+    };
+
+    let currentLang = localStorage.getItem('noble_lang') || 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      try { localStorage.setItem('noble_lang', lang); } catch(e) {}
+
+      // Direction
+      document.documentElement.lang = lang === 'ar' ? 'ar' : 'en';
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      // Content direction only — header layout stays fixed
+      document.body.style.direction = 'ltr';
+      document.querySelectorAll('.patient-body, .portal-content, .portal-body, .sub-page, .modal-sheet').forEach(el => {
+        el.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
+      });
+
+      // Update lang buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      const dict = I18N[lang] || I18N.en;
+
+      // Text content
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) el.textContent = dict[key];
+      });
+
+      // Placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (dict[key]) el.placeholder = dict[key];
+      });
+
+      // Common search placeholders
+      document.querySelectorAll('.search-bar input').forEach(inp => {
+        inp.placeholder = dict.ask_placeholder || 'Ask Noblepharma...';
+      });
+    }
+
+    // Apply saved language on load
+    document.addEventListener('DOMContentLoaded', function() {
+      setLanguage(currentLang);
+    });
+    // Also apply immediately
+    setLanguage(currentLang);
+
+    // Override toasts for language
+    const _origMarkTaken = markTaken;
+    markTaken = function() {
+      showToast((I18N[currentLang] || I18N.en).dose_taken);
+    };
+    const _origComplete = completeSignup;
+    completeSignup = function() {
+      const name = document.getElementById('signup-name').value || 'User';
+      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      lastRole = selectedRole;
+      lastName = name;
+      try {
+        localStorage.setItem('noble_role', selectedRole);
+        localStorage.setItem('noble_name', name);
+      } catch(e) {}
+      const avatarEl = document.getElementById('user-avatar');
+      const nameEl = document.getElementById('user-name');
+      if (avatarEl) avatarEl.textContent = initials;
+      if (nameEl) nameEl.textContent = name.split(' ')[0];
+      document.getElementById('signup-modal').classList.remove('show');
+      showToast((I18N[currentLang] || I18N.en).account_created);
+      navHistory.length = 0;
+      setTimeout(() => enterPortal(selectedRole), 500);
+    };
   </script>
 </body>
 </html>
